@@ -1,6 +1,7 @@
 .card-container {
   max-width: 120rem;
   margin: 0 auto;
+  padding: 8rem 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
