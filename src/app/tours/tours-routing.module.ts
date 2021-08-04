@@ -6,7 +6,7 @@ import { TourDetailsComponent } from './components/tour-details/tour-details.com
 
 const toursRoutes: Routes = [
   { path: '', component: TourContainerComponent },
-  { path: 'tours/details/:id', component: TourDetailsComponent, pathMatch: 'full' }
+  { path: 'details/:id', component: TourDetailsComponent, },
 ];
 
 @NgModule({
