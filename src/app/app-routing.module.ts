@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/tours', pathMatch: 'full' },
   { path: 'tours', loadChildren: () => import('./tours/tours.module').then(m => m.ToursModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path: '**', component: PageNotFoundComponent }
 ];
 
