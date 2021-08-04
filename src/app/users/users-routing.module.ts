@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserSettingsComponent } from './components/user-profile/user-settings/user-settings.component';
 
 
 const usersRoutes: Routes = [
-  { path: '', redirectTo: '/users/me' },
-  { path: 'me', component: UserProfileComponent }
+  { path: '', component: UserProfileComponent, children: [
+      { path: '', component: UserSettingsComponent },
+      { path: 'bookings', component: UserSettingsComponent },
+    ] }
 ];
 
 @NgModule({
