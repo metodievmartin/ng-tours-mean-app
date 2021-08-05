@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../../../reducers';
+import { TourActions } from '../../store/actions';
 
 @Component({
   selector: 'app-tour-details',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TourDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public store: Store<fromApp.AppState>
+  ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(
+      TourActions.fetchTourDetails({ tourId: 'gdfgdf44rtt' })
+    );
   }
 
 }
