@@ -13,10 +13,11 @@
 }
 .card__text {
   grid-column: 1 / -1;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-style: italic;
   margin-top: -1rem;
   margin-bottom: 0.75rem;
+  letter-spacing: .5px;
 }
 .card__data {
   font-size: 1.2rem;

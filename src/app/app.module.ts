@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { RouterModule } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { reducers, metaReducers } from './reducers';
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers
-    })
+    }),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
