@@ -1,7 +1,7 @@
 <div class="user-view__content">
   <div class="user-view__form-container">
     <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
-    <form class="form form-user-data">
+    <form class="form form-user-data" (submit)="onUserInfoUpdate($event)">
       <div class="form__group">
         <label class="form__label" for="name">Name</label>
         <input
@@ -34,7 +34,7 @@
   <div class="line">&nbsp;</div>
   <div class="user-view__form-container">
     <h2 class="heading-secondary ma-bt-md">Password change</h2>
-    <form class="form form-user-settings">
+    <form class="form form-user-settings" (submit)="onPasswordUpdate($event)">
       <div class="form__group">
         <label class="form__label" for="password-current">Current password</label>
         <input
