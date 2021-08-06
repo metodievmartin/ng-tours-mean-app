@@ -1,11 +1,23 @@
 <section class="section-pictures">
   <div class="picture-box">
-    <img class="picture-box__img picture-box__img--1" src="assets/img/tour-1-cover.jpg" alt="The Park Camper Tour 1"/>
+    <img
+      class="picture-box__img picture-box__img--1"
+      [src]="[tourImagesUrl + images![0]]"
+      [alt]="name"
+    />
   </div>
   <div class="picture-box">
-    <img class="picture-box__img picture-box__img--2" src="assets/img/tour-1-cover.jpg" alt="The Park Camper Tour 1"/>
+    <img
+      class="picture-box__img picture-box__img--2"
+      [src]="[tourImagesUrl + images![1]]"
+      [alt]="name"
+    />
   </div>
   <div class="picture-box">
-    <img class="picture-box__img picture-box__img--3" src="assets/img/tour-1-cover.jpg" alt="The Park Camper Tour 1"/>
+    <img
+      class="picture-box__img picture-box__img--3"
+      [src]="[tourImagesUrl + images![2]]"
+      [alt]="name"
+    />
   </div>
 </section>

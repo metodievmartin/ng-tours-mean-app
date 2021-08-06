@@ -1,11 +1,37 @@
-<app-tour-details-header></app-tour-details-header>
+<div *ngIf="loading" class="spinner-container">
+  <app-spinner></app-spinner>
+</div>
 
-<app-tour-details-description></app-tour-details-description>
+<ng-container *ngIf="tour">
+  <app-tour-details-header
+    [tourImagesUrl]="tourImagesUrl"
+    [imageCover]="tour.imageCover"
+    [name]="tour.name"
+    [duration]="tour.duration"
+    [location]="tour.startLocation.description">
+  </app-tour-details-header>
 
-<app-tour-details-pictures></app-tour-details-pictures>
+  <app-tour-details-description
+    [name]="tour.name"
+    [startDate]="tour.startDates[0]"
+    [ratingsAverage]="tour.ratingsAverage"
+    [maxGroupSize]="tour.maxGroupSize"
+    [difficulty]="tour.difficulty"
+    [description]="tour.description"
+    [guides]="tour.guides">
+  </app-tour-details-description>
 
-<app-tour-details-map></app-tour-details-map>
+  <app-tour-details-pictures
+    [tourImagesUrl]="tourImagesUrl"
+    [name]="tour.name"
+    [images]="tour.images">
+  </app-tour-details-pictures>
 
-<app-tour-details-reviews></app-tour-details-reviews>
+  <app-tour-details-map></app-tour-details-map>
 
-<app-tour-details-cta></app-tour-details-cta>
+  <app-tour-details-reviews
+    [reviews]="tour.reviews">
+  </app-tour-details-reviews>
+
+  <app-tour-details-cta></app-tour-details-cta>
+</ng-container>

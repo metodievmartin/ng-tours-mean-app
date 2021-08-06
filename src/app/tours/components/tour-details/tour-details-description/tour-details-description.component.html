@@ -8,58 +8,44 @@
             <use xlink:href="/assets/img/icons.svg#icon-calendar"></use>
           </svg>
           <span class="overview-box__label">Next date</span>
-          <span class="overview-box__text">August 2021</span>
+          <span class="overview-box__text">{{ startDate | date }}</span>
         </div>
         <div class="overview-box__detail">
           <svg class="overview-box__icon">
             <use xlink:href="/assets/img/icons.svg#icon-trending-up"></use>
           </svg>
           <span class="overview-box__label">Difficulty</span>
-          <span class="overview-box__text">Medium</span>
+          <span class="overview-box__text">{{ difficulty }}</span>
         </div>
         <div class="overview-box__detail">
           <svg class="overview-box__icon">
             <use xlink:href="/assets/img/icons.svg#icon-user"></use>
           </svg>
           <span class="overview-box__label">Participants</span>
-          <span class="overview-box__text">10 people</span>
+          <span class="overview-box__text">{{ maxGroupSize }} people</span>
         </div>
         <div class="overview-box__detail">
           <svg class="overview-box__icon">
             <use xlink:href="/assets/img/icons.svg#icon-star"></use>
           </svg>
-            <span class="overview-box__label">Rating</span><span class="overview-box__text">4.9 / 5</span>
+          <span class="overview-box__label">Rating</span>
+          <span class="overview-box__text">{{ ratingsAverage }} / 5</span>
         </div>
       </div>
       <div class="overview-box__group">
         <h2 class="heading-secondary ma-bt-lg">Your tour guides</h2>
-        <div class="overview-box__detail">
-          <img class="overview-box__img" src="/assets/img/default.jpg" alt="Lead guide"/>
-          <span class="overview-box__label">Lead guide</span>
-          <span class="overview-box__text">Steven Miller</span>
-        </div>
-        <div class="overview-box__detail">
-          <img class="overview-box__img" src="/assets/img/default.jpg" alt="Tour guide"/>
-          <span class="overview-box__label">Tour guide</span>
-          <span class="overview-box__text">Lisa Brown</span>
-        </div>
-        <div class="overview-box__detail">
-          <img class="overview-box__img" src="/assets/img/default.jpg" alt="Intern"/>
-          <span class="overview-box__label">Intern</span>
-          <span class="overview-box__text">Max Smith</span>
+        <div class="overview-box__detail" *ngFor="let guide of guides">
+          <img class="overview-box__img" src="/assets/img/default.jpg" [alt]="guide.role"/>
+          <span class="overview-box__label">{{ guide.role }}</span>
+          <span class="overview-box__text">{{ guide.name }}</span>
         </div>
       </div>
     </div>
   </div>
   <div class="description-box">
-    <h2 class="heading-secondary ma-bt-lg">About the park camper tour</h2>
-    <p class="description__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                 pariatur.</p>
-    <p class="description__text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                 nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                 officia deserunt mollit anim id est laborum!</p>
+    <h2 class="heading-secondary ma-bt-lg">About the {{ name }} tour</h2>
+    <ng-container *ngFor="let paragraph of description!.split('\n')">
+      <p class="description__text">{{ paragraph }}</p>
+    </ng-container>
   </div>
 </section>

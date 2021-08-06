@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tour-details-pictures',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tour-details-pictures.component.css']
 })
 export class TourDetailsPicturesComponent implements OnInit {
+  @Input() tourImagesUrl: string | undefined;
+  @Input() name: string | undefined;
+  @Input() images: string[] | undefined = [];
 
   constructor() {
   }
