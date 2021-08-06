@@ -1,9 +1,27 @@
 <div class="card">
+  <ng-container *ngIf="tour">
 
-  <app-tour-card-header></app-tour-card-header>
+    <app-tour-card-header
+      [imageCover]="tour.imageCover"
+      [name]="tour.name">
+    </app-tour-card-header>
 
-  <app-tour-card-details></app-tour-card-details>
+    <app-tour-card-details
+      [difficulty]="tour.difficulty"
+      [duration]="tour.duration"
+      [maxGroupSize]="tour.maxGroupSize"
+      [startDate]="tour.startDates[0]"
+      [startLocation]="tour.startLocation.description"
+      [summary]="tour.summary"
+      [numberOfStops]="tour.locations.length">
+    </app-tour-card-details>
 
-  <app-tour-card-footer></app-tour-card-footer>
+    <app-tour-card-footer
+      [price]="tour.price"
+      [ratingsAverage]="tour.ratingsAverage"
+      [ratingsQuantity]="tour.ratingsQuantity"
+      [slug]="tour.slug">
+    </app-tour-card-footer>
 
+  </ng-container>
 </div>

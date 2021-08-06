@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tour-card-header',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   host: { 'class': 'card-header' }
 })
 export class TourCardHeaderComponent implements OnInit {
+  @Input() imageCover: string | undefined;
+  @Input() name: string | undefined;
 
   constructor() {
   }

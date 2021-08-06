@@ -1,7 +1,11 @@
 <div class="card__header">
     <div class="card__picture">
         <div class="card__picture-overlay">&nbsp;</div>
-        <img class="card__picture-img" src="assets/img/tour-1-cover.jpg" alt="Tour 1"/>
+        <img
+          class="card__picture-img"
+          [src]="['http://localhost:5000/img/tours/' + imageCover]"
+          [alt]="name"
+        />
     </div>
-    <h3 class="heading-tertiary"><span>The Forest Hiker</span></h3>
+    <h3 class="heading-tertiary"><span>{{ name }}</span></h3>
 </div>

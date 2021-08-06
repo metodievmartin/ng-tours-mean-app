@@ -9,6 +9,7 @@ import { TourCardDetailsComponent } from './components/tour-card/tour-card-detai
 import { TourCardFooterComponent } from './components/tour-card/tour-card-footer/tour-card-footer.component';
 import { EffectsModule } from '@ngrx/effects';
 import { TourEffects } from './store/effects';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { TourEffects } from './store/effects';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ToursRoutingModule,
-    EffectsModule.forFeature([TourEffects])
+    EffectsModule.forFeature([TourEffects]),
   ]
 })
 export class ToursModule { }

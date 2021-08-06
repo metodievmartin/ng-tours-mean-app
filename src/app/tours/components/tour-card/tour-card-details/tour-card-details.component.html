@@ -1,28 +1,28 @@
 <div class="card__details">
-    <h4 class="card__sub-heading">Easy 5-day tour</h4>
-    <p class="card__text">Breathtaking hike through the Canadian Banff National Park</p>
+    <h4 class="card__sub-heading">{{ difficulty }} {{ duration }}-day tour</h4>
+    <p class="card__text">{{ summary }}</p>
     <div class="card__data">
         <svg class="card__icon">
             <use xlink:href="/assets/img/icons.svg#icon-map-pin"></use>
         </svg>
-        <span>Banff, Canada</span>
+        <span>{{ startLocation }}</span>
     </div>
     <div class="card__data">
         <svg class="card__icon">
             <use xlink:href="/assets/img/icons.svg#icon-calendar"></use>
         </svg>
-        <span>April 2021</span>
+        <span>{{ startDate | date }}</span>
     </div>
     <div class="card__data">
         <svg class="card__icon">
             <use xlink:href="/assets/img/icons.svg#icon-flag"></use>
         </svg>
-        <span>3 stops</span>
+        <span>{{ numberOfStops }} stops</span>
     </div>
     <div class="card__data">
         <svg class="card__icon">
             <use xlink:href="/assets/img/icons.svg#icon-user"></use>
         </svg>
-        <span>25 people</span>
+        <span>{{ maxGroupSize }} people</span>
     </div>
 </div>

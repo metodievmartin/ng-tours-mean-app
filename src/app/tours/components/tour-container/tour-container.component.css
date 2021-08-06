@@ -7,3 +7,6 @@
   grid-gap: 7rem;
   justify-content: center;
 }
+.spinner-container {
+  min-height: 60vh;
+}
