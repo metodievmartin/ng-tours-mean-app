@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { TourActions } from '../actions';
+import { TourActions, TourApiActions } from '../actions';
 import { Tour } from '../../interfaces';
 
 export interface State {
@@ -27,4 +27,18 @@ export const reducer = createReducer(
       loading: true,
     })),
 
+  on(TourApiActions.fetchAllToursSuccess,
+    (state, { tours }) => ({
+      ...state,
+      tours,
+      error: null,
+      loading: false,
+    })),
+
+  on(TourApiActions.fetchAllToursFailure, (state, { error }) =>({
+    ...state,
+    tours: [],
+    error,
+    loading: false
+  }))
 );

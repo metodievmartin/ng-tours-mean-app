@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
+import { AllToursResponse, Tour } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class TourService {
   ) { }
 
   getAllTours() {
-    return this.http.get(environment.restApiHost + this.allToursUrl);
+    return this.http.get<AllToursResponse>(environment.restApiHost + this.allToursUrl);
   }
 
   getOneTour(tourIdentifier: string) {

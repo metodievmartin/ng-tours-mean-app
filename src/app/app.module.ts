@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,10 +17,12 @@ import { environment } from '../environments/environment';
   imports: [
     CoreModule,
     RouterModule,
+    HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
+    EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [],

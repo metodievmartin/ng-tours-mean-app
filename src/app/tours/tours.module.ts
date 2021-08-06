@@ -7,6 +7,8 @@ import { ToursRoutingModule } from './tours-routing.module';
 import { TourCardHeaderComponent } from './components/tour-card/tour-card-header/tour-card-header.component';
 import { TourCardDetailsComponent } from './components/tour-card/tour-card-details/tour-card-details.component';
 import { TourCardFooterComponent } from './components/tour-card/tour-card-footer/tour-card-footer.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TourEffects } from './store/effects';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { TourCardFooterComponent } from './components/tour-card/tour-card-footer
   ],
   imports: [
     CommonModule,
-    ToursRoutingModule
+    ToursRoutingModule,
+    EffectsModule.forFeature([TourEffects])
   ]
 })
 export class ToursModule { }
