@@ -25,7 +25,7 @@ export interface Tour {
   slug: string;
   __v: number;
   durationWeeks: number;
-  reviews: [],
+  reviews: Review[],
   id: string;
 }
 
@@ -43,6 +43,21 @@ export interface AllToursResponse {
   data: {
     data: Tour[];
   };
+}
+
+export interface Review {
+  createdAt: string;
+  _id: string;
+  review: string;
+  rating: number;
+  user: {
+    photo: string;
+    _id: string;
+    name: string;
+  };
+  tour: string;
+  __v: number;
+  id: string;
 }
 
 export interface SingleTourResponse {
