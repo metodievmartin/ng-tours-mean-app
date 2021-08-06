@@ -33,12 +33,14 @@ export const reducer = createReducer(
     (state, { tours }) => ({
       ...state,
       tours,
+      tourDetails: null,
       error: null,
       loading: false,
     })),
 
   on(TourApiActions.fetchOneTourSuccess, (state, { tour }) =>({
     ...state,
+    tours: [],
     tourDetails: tour,
     loading: false,
     error: null
