@@ -10,6 +10,12 @@ import { TourCardFooterComponent } from './components/tour-card/tour-card-footer
 import { EffectsModule } from '@ngrx/effects';
 import { TourEffects } from './store/effects';
 import { SharedModule } from '../shared/shared.module';
+import { TourDetailsHeaderComponent } from './components/tour-details/tour-details-header/tour-details-header.component';
+import { TourDetailsDescriptionComponent } from './components/tour-details/tour-details-description/tour-details-description.component';
+import { TourDetailsPicturesComponent } from './components/tour-details/tour-details-pictures/tour-details-pictures.component';
+import { TourDetailsMapComponent } from './components/tour-details/tour-details-map/tour-details-map.component';
+import { TourDetailsReviewsComponent } from './components/tour-details/tour-details-reviews/tour-details-reviews.component';
+import { TourDetailsCtaComponent } from './components/tour-details/tour-details-cta/tour-details-cta.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,13 @@ import { SharedModule } from '../shared/shared.module';
     TourDetailsComponent,
     TourCardHeaderComponent,
     TourCardDetailsComponent,
-    TourCardFooterComponent
+    TourCardFooterComponent,
+    TourDetailsHeaderComponent,
+    TourDetailsDescriptionComponent,
+    TourDetailsPicturesComponent,
+    TourDetailsMapComponent,
+    TourDetailsReviewsComponent,
+    TourDetailsCtaComponent
   ],
   exports: [
     TourContainerComponent,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
 
 import * as fromApp from '../../../reducers';
 import { TourActions } from '../../store/actions';
@@ -12,12 +13,14 @@ import { TourActions } from '../../store/actions';
 export class TourDetailsComponent implements OnInit {
 
   constructor(
-    public store: Store<fromApp.AppState>
+    public store: Store<fromApp.AppState>,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    const tourSlug = this.route.snapshot.params.slug;
     this.store.dispatch(
-      TourActions.fetchTourDetails({ tourId: 'gdfgdf44rtt' })
+      TourActions.fetchTourDetails({ tourSlug })
     );
   }
 
