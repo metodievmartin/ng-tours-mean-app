@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  restApiHost: 'http://localhost:5000'
+  restApiHost: 'http://localhost:5000',
+  tourImg: '/img/tours/'
 };
 
 /*
