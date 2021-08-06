@@ -12,5 +12,11 @@ export const fetchAllToursFailure = createAction(
 );
 
 export const fetchOneTourSuccess = createAction(
-  '[Tour API] Fetch One Tour Success'
+  '[Tour API] Fetch One Tour Success',
+  props<{ tour: Tour }>()
+);
+
+export const fetchOneTourFailure = createAction(
+  '[Tour API] Fetch One Tour Failure',
+  props<{ error: any }>()
 );

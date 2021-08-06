@@ -5,12 +5,14 @@ import { Tour } from '../../interfaces';
 
 export interface State {
   tours: Tour[],
+  tourDetails: Tour | null,
   error: null,
   loading: boolean,
 }
 
 export const initialState: State = {
   tours: [],
+  tourDetails: null,
   error: null,
   loading: false,
 };
@@ -35,10 +37,21 @@ export const reducer = createReducer(
       loading: false,
     })),
 
-  on(TourApiActions.fetchAllToursFailure, (state, { error }) =>({
+  on(TourApiActions.fetchOneTourSuccess, (state, { tour }) =>({
     ...state,
-    tours: [],
-    error,
-    loading: false
-  }))
+    tourDetails: tour,
+    loading: false,
+    error: null
+  })),
+
+  on(
+    TourApiActions.fetchAllToursFailure,
+    TourApiActions.fetchOneTourFailure,
+    (state, { error }) => ({
+      ...state,
+      tours: [],
+      tourDetails: null,
+      error,
+      loading: false
+    }))
 );

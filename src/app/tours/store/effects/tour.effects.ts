@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { TourService } from '../../services';
 import { TourActions, TourApiActions } from '../actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Injectable()
 export class TourEffects {
@@ -19,10 +19,24 @@ export class TourEffects {
         )
       })
     )
-);
+  );
+
+  getOneTour$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TourActions.fetchTourDetails),
+      switchMap(action => {
+        return this.tourService.getOneTour(action.tourSlug).pipe(
+          map(res => res.data.data),
+          map(tour => TourApiActions.fetchOneTourSuccess({ tour })),
+          catchError(error => of(TourApiActions.fetchOneTourFailure({ error })))
+        )
+      })
+    )
+  );
 
   constructor(
     private actions$: Actions,
     public tourService: TourService,
-  ) { }
+  ) {
+  }
 }

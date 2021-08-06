@@ -6,5 +6,5 @@ export const fetchAllTours = createAction(
 
 export const fetchTourDetails = createAction(
   '[Tour Details Page] Fetch Tour Details',
-  props<{ tourId: string }>()
+  props<{ tourSlug: string }>()
 );

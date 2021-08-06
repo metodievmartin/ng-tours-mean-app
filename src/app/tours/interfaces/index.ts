@@ -44,3 +44,10 @@ export interface AllToursResponse {
     data: Tour[];
   };
 }
+
+export interface SingleTourResponse {
+  status: string;
+  data: {
+    data: Tour;
+  };
+}
