@@ -10,6 +10,7 @@ import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthEffects } from './auth/store/effects';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

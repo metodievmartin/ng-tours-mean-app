@@ -25,7 +25,7 @@ import { AuthEffects } from './store/effects';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature()
   ]
 })
 export class AuthModule { }
