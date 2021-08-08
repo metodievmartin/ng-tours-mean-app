@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   restApiHost: 'http://localhost:5000',
+  signupUrl: '/api/v1/users/signup/',
+  loginUrl: '/api/v1/users/login/',
   tourImg: '/img/tours/',
   userImg: '/img/users/',
 };

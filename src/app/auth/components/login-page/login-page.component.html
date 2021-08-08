@@ -16,8 +16,7 @@
         />
         <p
           *ngIf="loginForm.controls.email.errors?.email && loginForm.controls.email.touched"
-          class="error-notification"
-        >
+          class="error-notification">
           Please provide a valid email
         </p>
       </div>
@@ -32,8 +31,7 @@
         />
         <p
           *ngIf="loginForm.controls.password.errors?.minlength && loginForm.controls.password.touched"
-          class="error-notification"
-        >
+          class="error-notification">
           Password must be at least 8 characters long
         </p>
       </div>

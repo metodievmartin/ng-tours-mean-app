@@ -31,7 +31,6 @@ export class LoginPageComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.loginForm.controls.email.errors)
     const { email, password } = this.loginForm.value;
     this.store.dispatch(
       LoginPageActions.login({ email, password })

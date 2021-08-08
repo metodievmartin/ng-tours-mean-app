@@ -1,23 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../services';
-import { AuthActions, AuthApiActions, LoginPageActions } from '../actions';
+import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
+  register$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RegisterPageActions.register),
+      switchMap(action => {
+        return this.authService.register(
+          action.name, action.email, action.password, action.passwordConfirm).pipe(
+            tap(res => {
+              this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
+            }),
+          map(res => AuthApiActions.authSuccess({ user: res.data.user })),
+          catchError(error => of(AuthApiActions.registerFailure({ error })))
+        )
+      })
+    )
+  );
+
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoginPageActions.login),
       switchMap(action => {
         return this.authService.login(action.email, action.password).pipe(
           tap(res => {
-            this.authService.setStoredData(res.token, res.tokenExpirationDate, res.data.user);
-            this.router.navigate(['/']);
+            this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
           }),
-          map(res => AuthApiActions.loginSuccess({ user: res.data.user })),
+          map(res => AuthApiActions.authSuccess({ user: res.data.user })),
           catchError(error => of(AuthApiActions.loginFailure({ error })))
         )
       })
@@ -43,7 +59,7 @@ export class AuthEffects {
           return AuthActions.invalidStoredToken();
         }
 
-        return AuthApiActions.loginSuccess({ user });
+        return AuthApiActions.authSuccess({ user });
       }),
       catchError(error => of(AuthApiActions.loginFailure({ error })))
     )

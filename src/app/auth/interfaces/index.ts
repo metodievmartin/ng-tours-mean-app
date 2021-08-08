@@ -1,4 +1,4 @@
-export interface LoginResponse {
+export interface AuthResponse {
   status: string;
   token: string;
   tokenExpirationDate: string;

@@ -1,7 +1,10 @@
 <main>
   <div class="login-form">
     <h2 class="heading-secondary ma-bt-lg">Create your account</h2>
-    <form class="form form--login">
+    <div *ngIf="loading">
+      <app-spinner></app-spinner>
+    </div>
+    <form *ngIf="!loading" class="form form--login" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form__group">
         <label class="form__label" for="email">Your name</label>
         <input
@@ -9,8 +12,13 @@
           id="name"
           type="text"
           placeholder="John Doe"
-          required="required"
+          formControlName="name"
         />
+        <p
+          *ngIf="registerForm.controls.name.errors?.minlength && registerForm.controls.name.touched"
+          class="error-notification">
+          Name is required. Minimum 2 characters long
+        </p>
       </div>
       <div class="form__group">
         <label class="form__label" for="email">Email address</label>
@@ -19,8 +27,13 @@
           id="email"
           type="email"
           placeholder="you@example.com"
-          required="required"
+          formControlName="email"
         />
+        <p
+          *ngIf="registerForm.controls.email.errors?.email && registerForm.controls.email.touched"
+          class="error-notification">
+          Please provide a valid email
+        </p>
       </div>
       <div class="form__group ma-bt-md">
         <label class="form__label" for="password">Password</label>
@@ -29,23 +42,39 @@
           id="password"
           type="password"
           placeholder="••••••••"
-          required="required"
-          minlength="8"
+          formControlName="password"
         />
+        <p
+          *ngIf="registerForm.controls.password.errors?.minlength && registerForm.controls.password.touched"
+          class="error-notification">
+          Password must be at least 8 characters long
+        </p>
       </div>
       <div class="form__group ma-bt-md">
         <label class="form__label" for="password">Confirm Password</label>
         <input
           class="form__input"
-          id="confirmPass"
+          id="passwordConfirm"
           type="password"
           placeholder="••••••••"
-          required="required"
-          minlength="8"
+          formControlName="passwordConfirm"
         />
+        <p
+          *ngIf="registerForm.controls.password.value !==
+           registerForm.controls.passwordConfirm.value
+           && registerForm.controls.passwordConfirm.touched"
+          class="error-notification">
+          Passwords don't match
+        </p>
       </div>
       <div class="form__group">
-        <button class="btn btn--green">Sign up</button>
+        <button
+          type="submit"
+          class="btn btn--green"
+          [disabled]="!registerForm.valid"
+        >
+          Sign up
+        </button>
       </div>
     </form>
   </div>
