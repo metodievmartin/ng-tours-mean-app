@@ -6,6 +6,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Injectable()
 export class AuthEffects {
   register$ = createEffect(() =>
@@ -23,7 +24,6 @@ export class AuthEffects {
       })
     )
   );
-
 
   login$ = createEffect(() =>
     this.actions$.pipe(
@@ -67,14 +67,13 @@ export class AuthEffects {
 
   invalidStoredData$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.invalidStoredToken, AuthActions.invalidStoredUserData),
+      ofType(AuthActions.logout, AuthActions.invalidStoredToken, AuthActions.invalidStoredUserData),
       tap(() => {
         this.authService.clearStoredData();
       })
     ),
     { dispatch: false }
   );
-
 
   constructor(
     private actions$: Actions,
