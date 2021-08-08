@@ -36,7 +36,7 @@ export const reducer = createReducer(
     loading: false,
   })),
 
-  on(AuthApiActions.loginFailure, (state, { error }) => ({
+  on(AuthApiActions.loginFailure, AuthApiActions.registerFailure, (state, { error }) => ({
     ...state,
     error,
     isAuthenticated: false,
@@ -49,5 +49,10 @@ export const reducer = createReducer(
     loading: true,
   })),
 
-  on(AuthActions.logout, () => initialState)
+  on(AuthActions.logout, () => initialState),
+
+  on(AuthActions.clearError, (state) => ({
+    ...state,
+    error: null
+  }))
 );
