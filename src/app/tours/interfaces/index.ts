@@ -1,3 +1,5 @@
+import { User } from '../../auth/interfaces';
+
 export interface Tour {
   startLocation: {
     type: string;
@@ -27,14 +29,6 @@ export interface Tour {
   durationWeeks: number;
   reviews: Review[],
   id: string;
-}
-
-export interface User {
-  photo: string;
-  role: string;
-  _id: string;
-  name: string;
-  email: string;
 }
 
 export interface AllToursResponse {
