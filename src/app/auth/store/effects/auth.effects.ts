@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthService } from '../../services';
-import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Router } from '@angular/router';
+
+import { AuthService } from '../../services';
+import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
 
 
 @Injectable()
@@ -19,7 +19,7 @@ export class AuthEffects {
               this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
             }),
           map(res => AuthApiActions.authSuccess({ user: res.data.user })),
-          catchError(error => of(AuthApiActions.registerFailure({ error })))
+          catchError(error => this.handleAuthError(error))
         )
       })
     )
@@ -34,7 +34,7 @@ export class AuthEffects {
             this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
           }),
           map(res => AuthApiActions.authSuccess({ user: res.data.user })),
-          catchError(error => of(AuthApiActions.loginFailure({ error })))
+          catchError(error => this.handleAuthError(error))
         )
       })
     )
@@ -61,7 +61,7 @@ export class AuthEffects {
 
         return AuthApiActions.authSuccess({ user });
       }),
-      catchError(error => of(AuthApiActions.loginFailure({ error })))
+      catchError(error => this.handleAuthError(error))
     )
   );
 
@@ -75,10 +75,19 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  private handleAuthError(error: any) {
+    const errorMsg = { error: 'Something went wrong. Please try again later' };
+
+    if (error.statusText !== 'Unknown Error') {
+      errorMsg.error = error.error.message;
+    }
+
+    return of(AuthApiActions.registerFailure(errorMsg));
+  }
+
   constructor(
     private actions$: Actions,
     public authService: AuthService,
-    private router: Router
   ) {
   }
 }
