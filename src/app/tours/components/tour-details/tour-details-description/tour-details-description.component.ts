@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../../interfaces';
+import { User } from '../../../../auth/interfaces';
 
 @Component({
   selector: 'app-tour-details-description',
