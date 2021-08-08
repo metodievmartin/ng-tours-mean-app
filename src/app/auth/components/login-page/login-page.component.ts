@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../../reducers';
 import { LoginPageActions } from '../../store/actions';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -10,19 +11,30 @@ import { LoginPageActions } from '../../store/actions';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  loading = false;
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
 
   constructor(
     public store: Store<fromApp.AppState>
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
+    this.store.select(state => state.auth)
+      .subscribe(authState => {
+        this.loading = authState.loading;
+      });
   }
 
 
-  onSubmit($event: Event) {
-    $event.preventDefault();
+  onSubmit() {
+    console.log(this.loginForm.controls.email.errors)
+    const { email, password } = this.loginForm.value;
     this.store.dispatch(
-      LoginPageActions.login({ email: 'test@example.com', password: '123456' })
+      LoginPageActions.login({ email, password })
     );
   }
 }

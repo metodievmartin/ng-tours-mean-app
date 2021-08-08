@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,10 +13,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     FooterComponent,
     PageNotFoundComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        SharedModule,
+    ],
   exports: [
     HeaderComponent,
     FooterComponent

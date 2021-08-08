@@ -1,7 +1,10 @@
 <main>
   <div class="login-form">
     <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
-    <form class="form form--login" (submit)="onSubmit($event)">
+    <div *ngIf="loading">
+      <app-spinner></app-spinner>
+    </div>
+    <form *ngIf="!loading" class="form form--login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form__group">
         <label class="form__label" for="email">Email address</label>
         <input
@@ -9,8 +12,14 @@
           id="email"
           type="email"
           placeholder="you@example.com"
-          required="required"
+          formControlName="email"
         />
+        <p
+          *ngIf="loginForm.controls.email.errors?.email && loginForm.controls.email.touched"
+          class="error-notification"
+        >
+          Please provide a valid email
+        </p>
       </div>
       <div class="form__group ma-bt-md">
         <label class="form__label" for="password">Password</label>
@@ -19,12 +28,23 @@
           id="password"
           type="password"
           placeholder="••••••••"
-          required="required"
-          minlength="8"
+          formControlName="password"
         />
+        <p
+          *ngIf="loginForm.controls.password.errors?.minlength && loginForm.controls.password.touched"
+          class="error-notification"
+        >
+          Password must be at least 8 characters long
+        </p>
       </div>
       <div class="form__group">
-        <button type="submit" class="btn btn--green">Login</button>
+        <button
+          type="submit"
+          class="btn btn--green"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
       </div>
     </form>
   </div>

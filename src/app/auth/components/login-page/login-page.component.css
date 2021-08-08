@@ -66,15 +66,21 @@ main {
   /* Pseudo element (a visible thing that isn't really in the DOM).
       Also needs -ms- */
 }
-.form__input:focus {
+input:focus {
   outline: none;
+}
+input.ng-dirty.ng-valid {
   border-bottom: 3px solid #55c57a;
 }
-.form__input:focus:invalid {
-  border-bottom: 3px solid #ff7730;
+input.ng-dirty.ng-invalid {
+  border-bottom: 3px solid #ff5c09;
 }
 .form__input::-webkit-input-placeholder {
   color: #bbb;
+}
+.error-notification {
+ padding: .5rem;
+  color: #ff5c09;
 }
 .btn--green {
   background-color: #55c57a;
@@ -121,6 +127,11 @@ main {
 .btn:focus {
   outline: none;
   background-color: #2e864b;
+}
+
+.btn:disabled {
+  background: #999999;
+  cursor: default;
 }
 
 .small-print {
