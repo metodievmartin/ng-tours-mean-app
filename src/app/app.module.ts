@@ -9,8 +9,9 @@ import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from './auth/store/effects';
+import { AuthInterceptor } from './auth/services';
 
 
 @NgModule({
@@ -27,7 +28,13 @@ import { AuthEffects } from './auth/store/effects';
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
