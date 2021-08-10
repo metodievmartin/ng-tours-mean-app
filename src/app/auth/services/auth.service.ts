@@ -40,7 +40,7 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
-  clearStoredData(): void {
+  private clearStoredData(): void {
     localStorage.removeItem('userData');
     localStorage.removeItem('auth-jwt');
     localStorage.removeItem('auth-jwt-expiration');
@@ -58,8 +58,17 @@ export class AuthService {
     return localStorage.getItem('auth-jwt-expiration');
   }
 
-  storeDataAndRedirect(token: string, tokenExpirationDate: string, user: User): void {
+  storeDataAndRedirect(token: string, tokenExpirationDate: string, user: User, path?: string): void {
     this.setStoredData(token, tokenExpirationDate, user);
-    this.router.navigate(['/']);
+    if (path) {
+      this.router.navigate([path]);
+    }
+  }
+
+  clearStoredDataAndRedirect(path?: string): void {
+    this.clearStoredData();
+    if (path) {
+      this.router.navigate([path]);
+    }
   }
 }
