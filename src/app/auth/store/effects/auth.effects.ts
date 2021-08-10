@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 
 import { AuthService } from '../../services';
 import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Injectable()
@@ -31,7 +32,9 @@ export class AuthEffects {
       switchMap(action => {
         return this.authService.login(action.email, action.password).pipe(
           tap(res => {
-            this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
+            const path = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+            console.log(path);
+            this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user, path)
           }),
           map(res => AuthApiActions.authSuccess({ user: res.data.user })),
           catchError(error => this.handleAuthError(error))
@@ -50,7 +53,6 @@ export class AuthEffects {
           return AuthActions.invalidStoredUserData();
         }
 
-        const user = JSON.parse(userData);
         const token = this.authService.getStoredAuthToken();
         const tokenExpirationDate = this.authService.getStoredTokenExpirationDate();
         const isExpired = Number(tokenExpirationDate) < Date.now();
@@ -59,17 +61,29 @@ export class AuthEffects {
           return AuthActions.invalidStoredToken();
         }
 
+        const user = JSON.parse(userData);
+
         return AuthApiActions.authSuccess({ user });
       }),
       catchError(error => this.handleAuthError(error))
     )
   );
 
+  logout$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(AuthActions.logout),
+        tap(() => {
+          this.authService.clearStoredDataAndRedirect('/');
+        })
+      ),
+    { dispatch: false }
+  );
+
   invalidStoredData$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.logout, AuthActions.invalidStoredToken, AuthActions.invalidStoredUserData),
+      ofType(AuthActions.invalidStoredToken, AuthActions.invalidStoredUserData),
       tap(() => {
-        this.authService.clearStoredData();
+        this.authService.clearStoredDataAndRedirect();
       })
     ),
     { dispatch: false }
@@ -87,7 +101,8 @@ export class AuthEffects {
 
   constructor(
     private actions$: Actions,
-    public authService: AuthService,
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {
   }
 }
