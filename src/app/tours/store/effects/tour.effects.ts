@@ -22,6 +22,19 @@ export class TourEffects {
     )
   );
 
+  getTopFiveTours$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TourActions.fetchTopFiveTours),
+      switchMap(() => {
+        return this.tourService.getTopFiveTours().pipe(
+          map(res => res.data.data),
+          map(topFiveTours => TourApiActions.fetchTopFiveToursSuccess({ topFiveTours })),
+          catchError(error => of(TourApiActions.fetchTopFiveToursFailure({ error })))
+        )
+      })
+    )
+  )
+
   getOneTour$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TourActions.fetchTourDetails),

@@ -17,6 +17,7 @@ import { TourDetailsMapComponent } from './components/tour-details-map/tour-deta
 import { TourDetailsReviewsComponent } from './components/tour-details-reviews/tour-details-reviews.component';
 import { TourDetailsCtaComponent } from './components/tour-details-cta/tour-details-cta.component';
 import { CheckoutPageComponent } from './layouts/checkout-page/checkout-page.component';
+import { TopFiveToursPageComponent } from './layouts/top-five-tours-page/top-five-tours-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CheckoutPageComponent } from './layouts/checkout-page/checkout-page.com
     TourDetailsMapComponent,
     TourDetailsReviewsComponent,
     TourDetailsCtaComponent,
-    CheckoutPageComponent
+    CheckoutPageComponent,
+    TopFiveToursPageComponent
   ],
   exports: [
     AllToursPageComponent,

@@ -1,0 +1,20 @@
+<div *ngIf="loading" class="spinner-container">
+  <app-spinner></app-spinner>
+</div>
+
+<section class="banner">
+  <article class="info">
+    <h1>Top 5 tours</h1>
+    <p>Highest rated, lowest price</p>
+  </article>
+  <article class="logo">
+    <img src="/assets/img/logo-white.png" alt="">
+  </article>
+</section>
+
+<div class="card-container">
+  <app-tour-card
+    *ngFor="let tour of topFiveTours"
+    [tour]="tour">
+  </app-tour-card>
+</div>

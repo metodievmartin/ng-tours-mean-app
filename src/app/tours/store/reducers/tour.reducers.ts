@@ -11,6 +11,7 @@ export enum PurchaseStatus {
 
 export interface State {
   tours: Tour[],
+  topFiveTours: Tour[],
   tourDetails: Tour | null,
   error: null,
   loading: boolean,
@@ -20,6 +21,7 @@ export interface State {
 
 export const initialState: State = {
   tours: [],
+  topFiveTours: [],
   tourDetails: null,
   error: null,
   loading: false,
@@ -33,6 +35,7 @@ export const reducer = createReducer(
   on(
     TourActions.fetchAllTours,
     TourActions.fetchTourDetails,
+    TourActions.fetchTopFiveTours,
     (state) => ({
       ...state,
       error: null,
@@ -57,12 +60,21 @@ export const reducer = createReducer(
     isPurchaseStarted: false
   })),
 
+  on(TourApiActions.fetchTopFiveToursSuccess, (state, { topFiveTours }) => ({
+    ...state,
+    topFiveTours,
+    error: null,
+    loading: false
+  })),
+
   on(
     TourApiActions.fetchAllToursFailure,
     TourApiActions.fetchOneTourFailure,
+    TourApiActions.fetchTopFiveToursFailure,
     (state, { error }) => ({
       ...state,
       tours: [],
+      topFiveTours: [],
       tourDetails: null,
       error,
       loading: false,
