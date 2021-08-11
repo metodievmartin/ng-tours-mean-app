@@ -11,7 +11,7 @@ export const environment = {
   oneTourBySlugUrl: '/api/v1/tours/slug/',
   allBookingsUrl: '/api/v1/bookings/',
   allCompleteAndPaidBookingsUrl: '/api/v1/bookings?paid=true&status=completed',
-  createSessionUrl: '/api/v1/bookings/checkout-session/',
+  createSessionUrl: '/api/v1/bookings/checkout-page-session/',
   tourImg: '/img/tours/',
   userImg: '/img/users/',
 };

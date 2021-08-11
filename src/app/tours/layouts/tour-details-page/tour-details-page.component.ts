@@ -10,10 +10,10 @@ import { CheckoutService } from '../../services';
 
 @Component({
   selector: 'app-tour-details',
-  templateUrl: './tour-details.component.html',
-  styleUrls: ['./tour-details.component.css']
+  templateUrl: './tour-details-page.component.html',
+  styleUrls: ['./tour-details-page.component.css']
 })
-export class TourDetailsComponent implements OnInit {
+export class TourDetailsPageComponent implements OnInit {
   tourImagesUrl = environment.restApiHost + environment.tourImg;
   tour: Tour | null = null;
   loading: boolean = false;

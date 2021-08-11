@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Review } from '../../../interfaces';
+import { Review } from '../../interfaces';
 
 @Component({
   selector: 'app-tour-details-reviews',

@@ -30,7 +30,7 @@ export class CheckoutService {
 
     if (port) callBackUrl += ':' + port;
 
-    callBackUrl += '/tours/stripe-checkout';
+    callBackUrl += '/tours/stripe-checkout-page';
 
     return callBackUrl;
   }

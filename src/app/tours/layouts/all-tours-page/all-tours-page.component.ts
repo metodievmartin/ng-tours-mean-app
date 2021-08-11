@@ -4,15 +4,14 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../../reducers';
 import { TourActions } from '../../store/actions';
 import { Tour } from '../../interfaces';
-import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tour-container',
-  templateUrl: './tour-container.component.html',
-  styleUrls: ['./tour-container.component.css']
+  templateUrl: './all-tours-page.component.html',
+  styleUrls: ['./all-tours-page.component.css']
 })
-export class TourContainerComponent implements OnInit, OnDestroy {
+export class AllToursPageComponent implements OnInit, OnDestroy {
   tours: Tour[] = [];
   loading: boolean = false;
   storeSubscription: Subscription | undefined;

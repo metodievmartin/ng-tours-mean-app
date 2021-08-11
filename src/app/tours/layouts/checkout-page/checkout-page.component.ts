@@ -8,10 +8,10 @@ import { PurchaseStatus } from '../../store/reducers';
 
 @Component({
   selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  templateUrl: './checkout-page.component.html',
+  styleUrls: ['./checkout-page.component.css']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit {
   purchaseStatus = PurchaseStatus.PENDING;
 
   constructor(
