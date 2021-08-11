@@ -5,6 +5,11 @@ import { UsersRoutingModule } from './users-routing.module';
 import { SideNavItemComponent } from './components/user-profile/side-nav/side-nav-item/side-nav-item.component';
 import { SideNavComponent } from './components/user-profile/side-nav/side-nav.component';
 import { UserSettingsComponent } from './components/user-profile/user-settings/user-settings.component';
+import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
+import { BookingItemComponent } from './components/user-profile/booking-item/booking-item.component';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user.effects';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -12,14 +17,18 @@ import { UserSettingsComponent } from './components/user-profile/user-settings/u
     UserProfileComponent,
     SideNavComponent,
     SideNavItemComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    UserBookingsComponent,
+    BookingItemComponent
   ],
   exports: [
     UserProfileComponent
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    EffectsModule.forFeature([UserEffects]),
+    SharedModule
   ]
 })
 export class UsersModule {

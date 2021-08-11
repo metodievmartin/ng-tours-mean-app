@@ -1,0 +1,28 @@
+<section class="container">
+  <article class="image">
+    <img [src]="[tourImagesUrl + booking.tour.imageCover]" alt="tour-cover">
+  </article>
+  <article class="details">
+    <div class="date">
+      <svg class="card__icon">
+        <use xlink:href="/assets/img/icons.svg#icon-calendar"></use>
+      </svg>
+      <span>{{ booking.tour.startDates[0] | date }}</span>
+    </div>
+    <div class="location">
+      <svg class="card__icon">
+        <use xlink:href="/assets/img/icons.svg#icon-flag"></use>
+      </svg>
+      <span>{{ booking.tour.startLocation.description }}</span>
+    </div>
+  </article>
+  <article class="name">
+    <h3>{{ booking.tour.name }}</h3>
+  </article>
+  <article class="price">
+    <p>${{ booking.tour.price }}</p>
+  </article>
+  <article class="btn-container">
+    <a class="btn btn--small btn--green" [routerLink]="booking._id">Details</a>
+  </article>
+</section>
