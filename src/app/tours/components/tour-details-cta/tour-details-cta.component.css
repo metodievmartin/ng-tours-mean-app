@@ -129,3 +129,17 @@
 .btn:disabled {
   background-color: #809a80;
 }
+
+button.btn.btn--green.span-all-rows {
+  position: relative;
+}
+
+.mini-spinner {
+  position: absolute;
+  top: 11px;
+  right: 17px;
+}
+
+.right-padding {
+  padding-right: 6rem;
+}

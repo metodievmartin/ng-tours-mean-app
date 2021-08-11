@@ -12,9 +12,12 @@
         *ngIf="isAuthenticated"
         (click)="onBookTourClicked($event)"
         class="btn btn--green span-all-rows"
+        [ngClass]="{ 'right-padding': isPurchaseStarted }"
         [disabled]="isPurchaseStarted">
-        {{isPurchaseStarted ? 'Processing...' : 'Book your dream tour now!'}}
+        {{ isPurchaseStarted ? 'Processing...' : 'Book your dream tour now!' }}
+        <app-mini-spinner *ngIf="isPurchaseStarted" class="mini-spinner"></app-mini-spinner>
       </button>
+
       <a *ngIf="!isAuthenticated" class="btn btn--green span-all-rows" routerLink="/auth/login">
         Login to book your dream tour
       </a>
