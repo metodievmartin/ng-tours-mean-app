@@ -7,6 +7,9 @@ export const environment = {
   restApiHost: 'http://localhost:5000',
   signupUrl: '/api/v1/users/signup/',
   loginUrl: '/api/v1/users/login/',
+  allToursUrl: '/api/v1/tours/',
+  oneTourBySlugUrl: '/api/v1/tours/slug/',
+  createSessionUrl: '/api/v1/bookings/checkout-session/',
   tourImg: '/img/tours/',
   userImg: '/img/users/',
 };
