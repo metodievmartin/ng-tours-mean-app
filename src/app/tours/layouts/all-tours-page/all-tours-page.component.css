@@ -1,5 +1,6 @@
 .card-container {
   max-width: 120rem;
+  min-height: 85vh;
   margin: 0 auto;
   padding: 8rem 1rem;
   display: grid;
@@ -8,5 +9,14 @@
   justify-content: center;
 }
 .spinner-container {
-  min-height: 60vh;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, .55);
+  z-index: 99;
 }
+ app-spinner {
+   position: fixed;
+   top: 30%;
+   left: 50%
+ }
