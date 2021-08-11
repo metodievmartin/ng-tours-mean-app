@@ -9,6 +9,8 @@ export const environment = {
   loginUrl: '/api/v1/users/login/',
   allToursUrl: '/api/v1/tours/',
   oneTourBySlugUrl: '/api/v1/tours/slug/',
+  allBookingsUrl: '/api/v1/bookings/',
+  allCompleteAndPaidBookingsUrl: '/api/v1/bookings?paid=true&status=completed',
   createSessionUrl: '/api/v1/bookings/checkout-session/',
   tourImg: '/img/tours/',
   userImg: '/img/users/',
