@@ -22,7 +22,7 @@
 
 .user-view__menu {
   -webkit-box-flex: 32rem;
-  -ms-flex: 32rem 0 0px;
+  -ms-flex: 32rem 0 0;
   flex: 33rem 0 0;
   background-image: -webkit-gradient(
     linear,
