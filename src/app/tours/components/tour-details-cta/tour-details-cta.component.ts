@@ -7,9 +7,11 @@ import { Subject } from 'rxjs';
   styleUrls: ['./tour-details-cta.component.css']
 })
 export class TourDetailsCtaComponent implements OnInit {
+  @Input() tourImagesUrl!: string;
   @Input() isAuthenticated = false;
   @Input() duration!: number;
   @Input() isPurchaseStarted = false;
+  @Input() images: string[] = [];
   @Output() onBookTour = new Subject<Event>();
 
   constructor() {
