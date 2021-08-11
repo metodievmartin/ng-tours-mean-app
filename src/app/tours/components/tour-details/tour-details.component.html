@@ -33,5 +33,10 @@
     [reviews]="tour.reviews">
   </app-tour-details-reviews>
 
-  <app-tour-details-cta></app-tour-details-cta>
+  <app-tour-details-cta
+    [duration]="tour.duration"
+    [isAuthenticated]="isAuthenticated"
+    (onBookTour)="purchaseTour()"
+    [isPurchaseStarted]="isPurchaseStarted">
+  </app-tour-details-cta>
 </ng-container>

@@ -1,13 +1,21 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { TourActions, TourApiActions } from '../actions';
+import { StripeApiActions, TourActions, TourApiActions } from '../actions';
 import { Tour } from '../../interfaces';
+
+export enum PurchaseStatus {
+  'PENDING',
+  'COMPLETED',
+  'FAILED'
+}
 
 export interface State {
   tours: Tour[],
   tourDetails: Tour | null,
   error: null,
   loading: boolean,
+  isPurchaseStarted: boolean,
+  purchaseStatus: PurchaseStatus
 }
 
 export const initialState: State = {
@@ -15,6 +23,8 @@ export const initialState: State = {
   tourDetails: null,
   error: null,
   loading: false,
+  isPurchaseStarted: false,
+  purchaseStatus: PurchaseStatus.PENDING
 };
 
 export const reducer = createReducer(
@@ -43,7 +53,8 @@ export const reducer = createReducer(
     tours: [],
     tourDetails: tour,
     loading: false,
-    error: null
+    error: null,
+    isPurchaseStarted: false
   })),
 
   on(
@@ -54,6 +65,43 @@ export const reducer = createReducer(
       tours: [],
       tourDetails: null,
       error,
-      loading: false
-    }))
+      loading: false,
+      isPurchaseStarted: false
+    })),
+
+  on(TourActions.startCheckout, (state) => ({
+    ...state,
+    loading: true,
+    isPurchaseStarted: true
+  })),
+
+  on(StripeApiActions.checkoutCreationSuccess, (state) => ({
+    ...state,
+    error: null,
+    loading: false,
+    isPurchaseStarted: false
+  })),
+
+  on(StripeApiActions.checkoutCreationFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false,
+    isPurchaseStarted: false
+  })),
+
+  on(StripeApiActions.purchaseSuccess, (state) => ({
+    ...state,
+    error: null,
+    loading: false,
+    isPurchaseStarted: false,
+    purchaseStatus: PurchaseStatus.COMPLETED
+  })),
+
+  on(StripeApiActions.purchaseFailed, (state) => ({
+    ...state,
+    error: null,
+    loading: false,
+    isPurchaseStarted: false,
+    purchaseStatus: PurchaseStatus.FAILED
+  })),
 );

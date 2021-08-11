@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-tour-details-cta',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tour-details-cta.component.css']
 })
 export class TourDetailsCtaComponent implements OnInit {
+  @Input() isAuthenticated = false;
+  @Input() duration!: number;
+  @Input() isPurchaseStarted = false;
+  @Output() onBookTour = new Subject<Event>();
 
   constructor() {
   }
@@ -13,4 +18,7 @@ export class TourDetailsCtaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onBookTourClicked(event: Event) {
+    this.onBookTour.next(event)
+  }
 }

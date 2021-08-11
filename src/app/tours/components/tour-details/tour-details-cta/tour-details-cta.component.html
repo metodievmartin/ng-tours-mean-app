@@ -7,8 +7,17 @@
     <img class="cta__img cta__img--2" src="/assets/img/tour-1-cover.jpg" alt=""/>
     <div class="cta__content">
       <h2 class="heading-secondary">What are you waiting for?</h2>
-      <p class="cta__text">10 days. 1 adventure. Infinite memories. Make it yours today!</p>
-      <button class="btn btn--green span-all-rows">Book tour now!</button>
+      <p class="cta__text">{{duration}} days. 1 adventure. Infinite memories. Make it yours today!</p>
+      <button
+        *ngIf="isAuthenticated"
+        (click)="onBookTourClicked($event)"
+        class="btn btn--green span-all-rows"
+        [disabled]="isPurchaseStarted">
+        {{isPurchaseStarted ? 'Processing...' : 'Book your dream tour now!'}}
+      </button>
+      <a *ngIf="!isAuthenticated" class="btn btn--green span-all-rows" routerLink="/auth/login">
+        Login to book your dream tour
+      </a>
     </div>
   </div>
 </section>

@@ -1,14 +1,12 @@
 .section-cta {
   margin-top: calc(0px - var(--section-rotate));
-  padding: 3rem;
-  padding-bottom: 11rem;
-  padding-top: calc(15rem + var(--section-rotate));
+  padding: calc(15rem + var(--section-rotate)) 3rem 11rem;
   background-color: #f7f7f7;
 }
 
 .cta {
   position: relative;
-  max-width: 105rem;
+  max-width: 115rem;
   margin: 0 auto;
   overflow: hidden;
   background-color: #fff;
@@ -126,4 +124,8 @@
 .btn:focus {
   outline: none;
   background-color: #2e864b;
+}
+
+.btn:disabled {
+  background-color: #809a80;
 }

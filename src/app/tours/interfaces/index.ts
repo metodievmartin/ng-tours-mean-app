@@ -60,3 +60,12 @@ export interface SingleTourResponse {
     data: Tour;
   };
 }
+
+export interface CheckoutSessionResponse {
+  status: string;
+  data: CheckoutSession
+}
+export interface CheckoutSession {
+  checkoutSessionId: string;
+  stripePublicKey: string;
+}

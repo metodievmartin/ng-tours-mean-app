@@ -8,20 +8,27 @@ import { AllToursResponse, SingleTourResponse } from '../interfaces';
   providedIn: 'root'
 })
 export class TourService {
-  private allToursUrl = '/api/v1/tours/';
-  private oneTourBySlug = '/api/v1/tours/slug/';
+  private host = environment.restApiHost;
+  private allTours = environment.allToursUrl;
+  private oneTourBySlug = environment.oneTourBySlugUrl;
 
   constructor(
-    public http: HttpClient
+    private http: HttpClient
   ) { }
 
   getAllTours() {
-    return this.http.get<AllToursResponse>(environment.restApiHost + this.allToursUrl);
+    return this.http.get<AllToursResponse>(this.host  + this.allTours);
   }
 
-  getOneTour(tourIdentifier: string) {
+  getOneTourBySlug(tourSlug: string) {
     return this.http.get<SingleTourResponse>(
-      environment.restApiHost + this.oneTourBySlug + tourIdentifier
+      this.host + this.oneTourBySlug + tourSlug
+    );
+  }
+
+  getOneTourById(tourId: string) {
+    return this.http.get<SingleTourResponse>(
+      this.host + this.allTours + tourId
     );
   }
 }

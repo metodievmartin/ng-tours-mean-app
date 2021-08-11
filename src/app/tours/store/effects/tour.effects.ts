@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { TourService } from '../../services';
-import { TourActions, TourApiActions } from '../actions';
+import { CheckoutService, TourService } from '../../services';
+import { StripeApiActions, TourActions, TourApiActions } from '../actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TourEffects {
@@ -25,7 +26,7 @@ export class TourEffects {
     this.actions$.pipe(
       ofType(TourActions.fetchTourDetails),
       switchMap(action => {
-        return this.tourService.getOneTour(action.tourSlug).pipe(
+        return this.tourService.getOneTourBySlug(action.tourSlug).pipe(
           map(res => res.data.data),
           map(tour => TourApiActions.fetchOneTourSuccess({ tour })),
           catchError(error => of(TourApiActions.fetchOneTourFailure({ error })))
@@ -34,9 +35,40 @@ export class TourEffects {
     )
   );
 
+  startCheckout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TourActions.startCheckout),
+      switchMap(action => {
+        return this.checkoutService.startTourCheckoutSession(action.tourId).pipe(
+          tap(res => this.checkoutService.redirectToCheckout(res.data)),
+          map(res => StripeApiActions.checkoutCreationSuccess()),
+          catchError(error => of(StripeApiActions.checkoutCreationFailure(error)))
+        )
+      })
+    )
+  );
+
+  purchaseSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StripeApiActions.purchaseSuccess),
+      delay(2000),
+      tap(action => this.router.navigate(['/my-profile', 'bookings', action.bookingId]))
+    )
+  )
+
+  purchaseFailed$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StripeApiActions.purchaseFailed),
+      delay(2000),
+      tap(action => this.router.navigate(['/tours', action.tourSlug]))
+    )
+  )
+
   constructor(
     private actions$: Actions,
-    public tourService: TourService,
+    private tourService: TourService,
+    private checkoutService: CheckoutService,
+    private router: Router
   ) {
   }
 }
