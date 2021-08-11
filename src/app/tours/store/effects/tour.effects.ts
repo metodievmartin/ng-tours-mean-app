@@ -66,16 +66,18 @@ export class TourEffects {
       ofType(StripeApiActions.purchaseSuccess),
       delay(2000),
       tap(action => this.router.navigate(['/my-profile', 'bookings', action.bookingId]))
-    )
-  )
+    ),
+    { dispatch: false }
+  );
 
   purchaseFailed$ = createEffect(() =>
     this.actions$.pipe(
       ofType(StripeApiActions.purchaseFailed),
       delay(2000),
       tap(action => this.router.navigate(['/tours', action.tourSlug]))
-    )
-  )
+    ),
+    { dispatch: false }
+  );
 
   constructor(
     private actions$: Actions,
