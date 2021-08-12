@@ -33,7 +33,20 @@ export class TourEffects {
         )
       })
     )
-  )
+  );
+
+  getMyTours$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TourActions.fetchMyTours),
+      switchMap(() => {
+        return this.tourService.getMyTours().pipe(
+          map(res => res.data.data),
+          map(myTours => TourApiActions.fetchMyToursSuccess({ myTours })),
+          catchError(error => of(TourApiActions.fetchMyToursFailure({ error })))
+        )
+      })
+    )
+  );
 
   getOneTour$ = createEffect(() =>
     this.actions$.pipe(

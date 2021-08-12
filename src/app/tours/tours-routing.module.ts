@@ -6,11 +6,13 @@ import { TourDetailsPageComponent } from './layouts/tour-details-page/tour-detai
 import { CheckoutPageComponent } from './layouts/checkout-page/checkout-page.component';
 import { AuthGuard } from '../auth/guards';
 import { TopFiveToursPageComponent } from './layouts/top-five-tours-page/top-five-tours-page.component';
+import { MyToursPageComponent } from './layouts/my-tours-page/my-tours-page.component';
 
 
 const toursRoutes: Routes = [
   { path: '', component: AllToursPageComponent },
   { path: 'top-5', component: TopFiveToursPageComponent },
+  { path: 'my-tours', component: MyToursPageComponent },
   { path: 'stripe-checkout-page', component: CheckoutPageComponent, canActivate: [AuthGuard] },
   { path: ':slug', component: TourDetailsPageComponent },
 ];

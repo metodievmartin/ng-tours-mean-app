@@ -21,6 +21,16 @@ export const fetchTopFiveToursFailure = createAction(
   props<{ error: any }>()
 );
 
+export const fetchMyToursSuccess = createAction(
+  '[Tour API] Fetch My Tours Success',
+  props<{ myTours: Tour[] }>()
+);
+
+export const fetchMyToursFailure = createAction(
+  '[Tour API] Fetch My Tours Failure',
+  props<{ error: any }>()
+);
+
 export const fetchOneTourSuccess = createAction(
   '[Tour API] Fetch One Tour Success',
   props<{ tour: Tour }>()

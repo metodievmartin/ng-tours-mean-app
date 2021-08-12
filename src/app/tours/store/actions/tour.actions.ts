@@ -9,6 +9,10 @@ export const fetchTopFiveTours = createAction(
   '[Top 5 Tours Page] Fetch Top 5 Tours'
 );
 
+export const fetchMyTours = createAction(
+  '[My Tours Page] Fetch My Tours'
+);
+
 export const fetchTourDetails = createAction(
   '[Tour Details Page] Fetch Tour Details',
   props<{ tourSlug: string }>()

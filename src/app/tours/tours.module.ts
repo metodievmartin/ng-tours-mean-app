@@ -19,6 +19,7 @@ import { TourDetailsCtaComponent } from './components/tour-details-cta/tour-deta
 import { CheckoutPageComponent } from './layouts/checkout-page/checkout-page.component';
 import { TopFiveToursPageComponent } from './layouts/top-five-tours-page/top-five-tours-page.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { MyToursPageComponent } from './layouts/my-tours-page/my-tours-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BannerComponent } from './components/banner/banner.component';
     TourDetailsCtaComponent,
     CheckoutPageComponent,
     TopFiveToursPageComponent,
-    BannerComponent
+    BannerComponent,
+    MyToursPageComponent
   ],
   exports: [
     AllToursPageComponent,

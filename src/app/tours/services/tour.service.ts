@@ -12,6 +12,7 @@ export class TourService {
   private host = environment.restApiHost;
   private allTours = environment.allToursUrl;
   private topFiveTours = environment.topFiveToursUrl;
+  private myTours = environment.myToursUrl;
   private oneTourBySlug = environment.oneTourBySlugUrl;
 
   constructor(
@@ -27,6 +28,12 @@ export class TourService {
   getTopFiveTours(): Observable<AllToursResponse> {
     return this.http.get<AllToursResponse>(
       this.host + this.topFiveTours
+    );
+  }
+
+  getMyTours(): Observable<AllToursResponse> {
+    return this.http.get<AllToursResponse>(
+      this.host + this.myTours
     );
   }
 
