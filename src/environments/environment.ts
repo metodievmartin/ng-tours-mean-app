@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  //restApiHost: 'http://localhost:5000',
-  restApiHost: 'https://ngtours-api.herokuapp.com',
+  restApiHost: 'http://localhost:5000',
+  // restApiHost: 'https://ngtours-api.herokuapp.com',
   signupUrl: '/api/v1/users/signup/',
   loginUrl: '/api/v1/users/login/',
+  updateUserInfoUrl: '/api/v1/users/updateMe',
   allToursUrl: '/api/v1/tours/',
   myToursUrl: '/api/v1/tours/booked',
   topFiveToursUrl: '/api/v1/tours/top-5-cheap',
