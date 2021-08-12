@@ -4,6 +4,11 @@ import { User } from '../../interfaces';
 
 export const autoLogin = createAction('[Auth - App Init] Auto Login Check');
 
+export const autoLoginSuccess = createAction(
+  '[Auth] Auto Login Success',
+  props<{ user: User }>()
+);
+
 export const updateUserAuthData = createAction(
   '[Auth] Update User Auth Data',
   props<{ user: User }>()

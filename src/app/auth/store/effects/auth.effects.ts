@@ -7,6 +7,7 @@ import { AuthService } from '../../services';
 import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
 import { ActivatedRoute } from '@angular/router';
 import { UserApiActions } from '../../../users/store/actions';
+import { AuthResponse } from '../../interfaces';
 
 
 @Injectable()
@@ -20,7 +21,7 @@ export class AuthEffects {
             tap(res => {
               this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
             }),
-          map(res => AuthApiActions.authSuccess({ user: res.data.user })),
+          map(authResponse => AuthApiActions.authSuccess({ authResponse, redirect: true })),
           catchError(error => this.handleAuthError(error))
         )
       })
@@ -32,16 +33,26 @@ export class AuthEffects {
       ofType(LoginPageActions.login),
       switchMap(action => {
         return this.authService.login(action.email, action.password).pipe(
-          tap(res => {
-            const path = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-            console.log(path);
-            this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user, path)
-          }),
-          map(res => AuthApiActions.authSuccess({ user: res.data.user })),
+          map(authResponse => AuthApiActions.authSuccess({ authResponse, redirect: true })),
           catchError(error => this.handleAuthError(error))
         )
       })
     )
+  );
+
+  authSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthApiActions.authSuccess),
+      tap(({ authResponse, redirect }) => {
+        let path: string | undefined = undefined;
+        if (redirect) {
+          path = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+        }
+        this.authService.storeDataAndRedirect(
+          authResponse.token, authResponse.tokenExpirationDate, authResponse.data.user, path);
+      })
+    ),
+    { dispatch: false }
   );
 
   autoLogin$ = createEffect(() =>
@@ -50,7 +61,7 @@ export class AuthEffects {
       map(() => {
         const userData = this.authService.getStoredUserData();
 
-        if (!userData) {
+        if (!userData || userData === 'undefined' || userData === 'null') {
           return AuthActions.invalidStoredUserData();
         }
 
@@ -64,7 +75,8 @@ export class AuthEffects {
 
         const user = JSON.parse(userData);
 
-        return AuthApiActions.authSuccess({ user });
+
+        return AuthActions.autoLoginSuccess({ user });
       }),
       catchError(error => this.handleAuthError(error))
     )

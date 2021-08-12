@@ -28,11 +28,19 @@ export const reducer = createReducer(
   })),
 
   on(
-    AuthApiActions.authSuccess,
     AuthActions.updateUserAuthData,
+    AuthActions.autoLoginSuccess,
     (state, { user }) => ({
     ...state,
     user,
+    isAuthenticated: true,
+    error: null,
+    loading: false,
+  })),
+
+  on(AuthApiActions.authSuccess, (state, { authResponse }) => ({
+    ...state,
+    user: authResponse.data.user,
     isAuthenticated: true,
     error: null,
     loading: false,
