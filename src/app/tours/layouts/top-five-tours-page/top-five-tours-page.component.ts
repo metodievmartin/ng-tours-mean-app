@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../../reducers';
 import { TourActions } from '../../store/actions';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-top-five-tours-page',
@@ -11,6 +12,7 @@ import { TourActions } from '../../store/actions';
   styleUrls: ['./top-five-tours-page.component.css']
 })
 export class TopFiveToursPageComponent implements OnInit, OnDestroy {
+  tourImagesUrl = environment.restApiHost + environment.tourImg;
   topFiveTours: Tour[] = [];
   loading: boolean = false;
   storeSubscription: Subscription | undefined;

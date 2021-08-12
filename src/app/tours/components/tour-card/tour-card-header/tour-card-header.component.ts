@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   host: { 'class': 'card-header' }
 })
 export class TourCardHeaderComponent implements OnInit {
-  @Input() imageCover: string | undefined;
+  @Input() tourImagesUrl = '';
+  @Input() imageCover = '';
   @Input() name: string | undefined;
 
   constructor() {

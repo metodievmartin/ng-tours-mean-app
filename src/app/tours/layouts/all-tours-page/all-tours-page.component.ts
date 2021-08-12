@@ -5,6 +5,7 @@ import * as fromApp from '../../../reducers';
 import { TourActions } from '../../store/actions';
 import { Tour } from '../../interfaces';
 import { Subscription } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-tour-container',
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./all-tours-page.component.css']
 })
 export class AllToursPageComponent implements OnInit, OnDestroy {
+  tourImagesUrl = environment.restApiHost + environment.tourImg;
   tours: Tour[] = [];
   loading: boolean = false;
   storeSubscription: Subscription | undefined;

@@ -4,6 +4,7 @@
 <div class="card-container">
     <app-tour-card
       *ngFor="let tour of tours"
+      [tourImagesUrl]="tourImagesUrl"
       [tour]="tour">
     </app-tour-card>
 </div>

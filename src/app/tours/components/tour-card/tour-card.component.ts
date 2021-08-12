@@ -9,6 +9,7 @@ import { Tour } from '../../interfaces';
 })
 export class TourCardComponent implements OnInit {
   @Input() tour: Tour | undefined;
+  @Input() tourImagesUrl = '';
 
   constructor() { }
 
