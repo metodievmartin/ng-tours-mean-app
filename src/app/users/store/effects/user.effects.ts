@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserActions, UserApiActions, UserBookingActions } from '../actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { UsersService } from '../../services';
-import { AuthService } from '../../../auth/services';
+import { AuthApiActions } from '../../../auth/store/actions';
 
 
 @Injectable()
@@ -18,6 +18,22 @@ export class UserEffects {
           map(res => res.data.user),
           map(user => UserApiActions.updateUserInfoSuccess({ user: user })),
           catchError(error => of(UserApiActions.updateUserInfoFailure({ error })))
+        )
+      })
+    )
+  );
+
+  updateCurrentUserPassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.updateCurrentUserPassword),
+      switchMap(action => {
+        return this.usersService.updateCurrentUserPassword(
+          action.currentPassword, action.newPassword, action.passwordConfirm).pipe(
+            switchMap(authResponse => of(
+              UserApiActions.updateCurrentUserPasswordSuccess(),
+              AuthApiActions.authSuccess({ authResponse, redirect: false })
+            )),
+          catchError(error => of(UserApiActions.updateCurrentUserPasswordFailure({ error })))
         )
       })
     )
@@ -39,7 +55,6 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private usersService: UsersService,
-    private authService: AuthService
   ) {
   }
 }

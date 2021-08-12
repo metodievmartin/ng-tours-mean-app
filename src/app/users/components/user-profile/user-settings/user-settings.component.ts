@@ -78,13 +78,19 @@ export class UserSettingsComponent implements OnInit {
     }
   }
 
-  onPasswordUpdate($event: Event) {
-    $event.preventDefault();
+  onPasswordUpdate() {
+    if (this.passwordUpdateForm.invalid) {
+      return;
+    }
+
+    const { currentPassword, newPassword, passwordConfirm } = this.passwordUpdateForm.value;
+
+    console.log(this.passwordUpdateForm.value)
     this.store.dispatch(
       UserActions.updateCurrentUserPassword({
-        currentPass: 'test',
-        newPass: 'test1234',
-        confirmPass: 'test1234',
+        currentPassword,
+        newPassword,
+        passwordConfirm,
       })
     );
   }

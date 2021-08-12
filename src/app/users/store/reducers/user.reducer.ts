@@ -3,7 +3,8 @@ import { createReducer, on } from '@ngrx/store';
 import { UserActions, UserApiActions, UserBookingActions } from '../actions';
 import { Booking } from '../../interfaces';
 
-const updateUserInfoSuccess = 'User Info successfully updated';
+const updateUserInfoSuccess = 'Details updated successfully ';
+const updateUserPasswordSuccess = 'Password updated successfully ';
 
 export interface State {
   bookings: Booking[];
@@ -38,9 +39,18 @@ export const reducer = createReducer(
     loading: false
   })),
 
-  on(UserApiActions.updateUserInfoFailure, (state, { error }) => ({
+  on(
+    UserApiActions.updateUserInfoFailure,
+    UserApiActions.updateCurrentUserPasswordFailure,
+    (state, { error }) => ({
     ...state,
     error,
+    loading: false
+  })),
+
+  on(UserApiActions.updateCurrentUserPasswordSuccess, (state) => ({
+    ...state,
+    notification: updateUserPasswordSuccess,
     loading: false
   })),
 

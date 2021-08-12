@@ -13,6 +13,15 @@ export const updateUserInfoFailure = createAction(
   props<{ error: any}>()
 );
 
+export const updateCurrentUserPasswordSuccess = createAction(
+  '[Users API] Update User Password Success',
+);
+
+export const updateCurrentUserPasswordFailure = createAction(
+  '[Users API] Update User Password Failure',
+  props<{ error: any}>()
+);
+
 export const fetchBookingsSuccess = createAction(
   '[Users API] Fetch Bookings Success',
   props<{ bookings: Booking[]}>()

@@ -7,7 +7,7 @@ export const updateCurrentUserInfo = createAction(
 
 export const updateCurrentUserPassword = createAction(
   '[User Settings Page] Update Current User Password',
-  props<{ currentPass: string; newPass: string; confirmPass: string; }>()
+  props<{ currentPassword: string; newPassword: string; passwordConfirm: string; }>()
 );
 
 export const clearNotification = createAction(

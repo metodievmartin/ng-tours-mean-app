@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { AllBookingsResponse, UpdateUserResponse } from '../interfaces';
 import { Observable } from 'rxjs';
+import { AuthResponse } from '../../auth/interfaces';
 
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
   private host = environment.restApiHost;
   private updateUser = environment.updateUserInfoUrl;
+  private updatePassword= environment.updateUserPasswordUrl;
   private allBookings = environment.allBookingsUrl;
   private allCompletedAndPaidBookings = environment.allCompleteAndPaidBookingsUrl;
 
@@ -36,5 +38,20 @@ export class UsersService {
 
     return this.http
       .patch<UpdateUserResponse>(this.host + this.updateUser, formData);
+  }
+
+  updateCurrentUserPassword(
+    passwordCurrent: string,
+    password: string,
+    passwordConfirm: string
+  ): Observable<AuthResponse> {
+    const body = {
+      passwordCurrent,
+      password,
+      passwordConfirm
+    };
+
+    console.log(body);
+    return this.http.patch<AuthResponse>(this.host + this.updatePassword, body);
   }
 }
