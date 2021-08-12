@@ -8,6 +8,7 @@ export const environment = {
   // restApiHost: 'https://ngtours-api.herokuapp.com',
   signupUrl: '/api/v1/users/signup/',
   loginUrl: '/api/v1/users/login/',
+  updateUserPasswordUrl: '/api/v1/users/updateMyPassword',
   updateUserInfoUrl: '/api/v1/users/updateMe',
   allToursUrl: '/api/v1/tours/',
   myToursUrl: '/api/v1/tours/booked',
