@@ -4,7 +4,6 @@ import { AuthApiActions, AuthActions, LoginPageActions, RegisterPageActions } fr
 import { User } from '../../interfaces';
 
 
-
 export interface State {
   user: User | null;
   isAuthenticated: boolean;
@@ -28,7 +27,10 @@ export const reducer = createReducer(
     loading: true,
   })),
 
-  on(AuthApiActions.authSuccess, (state, { user }) => ({
+  on(
+    AuthApiActions.authSuccess,
+    AuthActions.updateUserAuthData,
+    (state, { user }) => ({
     ...state,
     user,
     isAuthenticated: true,

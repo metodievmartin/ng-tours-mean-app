@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { AuthService } from '../../services';
 import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
 import { ActivatedRoute } from '@angular/router';
+import { UserApiActions } from '../../../users/store/actions';
 
 
 @Injectable()
@@ -77,6 +78,15 @@ export class AuthEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  updateCurrentUserInfoSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserApiActions.updateUserInfoSuccess),
+      tap(action => this.authService.updateUserStoredData(action.user)),
+      map(action => AuthActions.updateUserAuthData({ user: action.user })),
+      catchError(error => of(AuthApiActions.loginFailure({ error })))
+    )
   );
 
   invalidStoredData$ = createEffect(() =>

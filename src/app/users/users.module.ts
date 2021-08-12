@@ -10,6 +10,7 @@ import { BookingItemComponent } from './components/user-profile/booking-item/boo
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,12 +25,13 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     UserProfileComponent
   ],
-  imports: [
-    CommonModule,
-    UsersRoutingModule,
-    EffectsModule.forFeature([UserEffects]),
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        UsersRoutingModule,
+        EffectsModule.forFeature([UserEffects]),
+        SharedModule,
+        ReactiveFormsModule
+    ]
 })
 export class UsersModule {
 }

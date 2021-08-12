@@ -1,6 +1,12 @@
 <main class="main">
   <div class="user-view">
 
+    <app-alert
+      *ngIf="notification"
+      [message]="notification"
+      (onClose)="closeAlert()">
+    </app-alert>
+
     <app-side-nav class="user-view__menu"></app-side-nav>
 
     <router-outlet></router-outlet>

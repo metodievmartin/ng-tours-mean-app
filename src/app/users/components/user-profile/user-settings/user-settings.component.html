@@ -1,15 +1,22 @@
 <div class="user-view__content">
+
+  <ng-container *ngIf="loading">
+    <div class="overlay"></div>
+    <app-spinner class="spinner"></app-spinner>
+  </ng-container>
+
   <div class="user-view__form-container">
+
+
     <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
-    <form class="form form-user-data" (submit)="onUserInfoUpdate($event)">
+    <form class="form form-user-data" [formGroup]="infoUpdateForm" (ngSubmit)="onUserInfoUpdate()">
       <div class="form__group">
         <label class="form__label" for="name">Name</label>
         <input
           class="form__input"
           id="name"
           type="text"
-          value="Martin Wigans"
-          required="required"
+          formControlName="name"
         />
       </div>
       <div class="form__group ma-bt-md">
@@ -18,20 +25,28 @@
           class="form__input"
           id="email"
           type="email"
-          value="admin@example.com"
-          required="required"
+          formControlName="email"
         />
       </div>
       <div class="form__group form__photo-upload">
-        <img class="form__user-photo" src="/assets/img/default.jpg" alt="User photo"/>
-        <a class="btn-text" href="">Choose new photo</a>
+        <img class="form__user-photo" [src]="[userImagesUrl + user?.photo || 'default.jpg']" alt="User photo"/>
+        <label class="btn-text upload-container">
+          <input type="file" class="file-input" (change)="onImageChange($event)" name="photo">
+          Choose new photo
+        </label>
       </div>
       <div class="form__group right">
-        <button class="btn btn--small btn--green">Save settings</button>
+        <button
+          class="btn btn--small btn--green"
+          [disabled]="!infoUpdateForm.valid">
+          Save settings
+        </button>
       </div>
     </form>
   </div>
+
   <div class="line">&nbsp;</div>
+
   <div class="user-view__form-container">
     <h2 class="heading-secondary ma-bt-md">Password change</h2>
     <form class="form form-user-settings" (submit)="onPasswordUpdate($event)">

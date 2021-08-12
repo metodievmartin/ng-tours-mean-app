@@ -1,11 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-export const updateUserInfo = createAction(
-  '[User Settings Page] Update User Info',
-  props<{ name: string; email: string; }>()
+export const updateCurrentUserInfo = createAction(
+  '[User Settings Page] Update Current User Info',
+  props<{ name: string; email: string; photo: File | null}>()
 );
 
-export const updateUserPassword = createAction(
-  '[User Settings Page] Update User Password',
+export const updateCurrentUserPassword = createAction(
+  '[User Settings Page] Update Current User Password',
   props<{ currentPass: string; newPass: string; confirmPass: string; }>()
+);
+
+export const clearNotification = createAction(
+  '[User Dashboard] Clear Notification'
 );

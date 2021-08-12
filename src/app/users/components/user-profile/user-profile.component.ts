@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../../reducers';
+import { UserActions } from '../../store/actions';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  notification: string | null = null;
 
-  constructor() { }
+  constructor(
+    public store: Store<fromApp.AppState>
+  ) { }
 
   ngOnInit(): void {
+    this.store.select(state => state.users)
+      .subscribe(usersState => this.notification = usersState.notification);
   }
 
+  closeAlert() {
+    this.store.dispatch(UserActions.clearNotification());
+  }
 }

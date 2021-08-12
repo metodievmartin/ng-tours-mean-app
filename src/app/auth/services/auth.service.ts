@@ -58,6 +58,10 @@ export class AuthService {
     return localStorage.getItem('auth-jwt-expiration');
   }
 
+  updateUserStoredData(user: User) {
+    localStorage.setItem('userData', JSON.stringify(user));
+  }
+
   storeDataAndRedirect(token: string, tokenExpirationDate: string, user: User, path?: string): void {
     this.setStoredData(token, tokenExpirationDate, user);
     if (path) {

@@ -57,15 +57,21 @@
   /* Pseudo element (a visible thing that isn't really in the DOM).
       Also needs -ms- */
 }
-.form__input:focus {
+input:focus {
   outline: none;
+}
+input.ng-dirty.ng-valid:focus {
   border-bottom: 3px solid #55c57a;
 }
-.form__input:focus:invalid {
-  border-bottom: 3px solid #ff7730;
+input.ng-dirty.ng-invalid {
+  border-bottom: 3px solid #ff5c09;
 }
 .form__input::-webkit-input-placeholder {
   color: #bbb;
+}
+.error-notification {
+  padding: .5rem;
+  color: #ff5c09;
 }
 .form__photo-upload {
   display: -webkit-box;
@@ -147,6 +153,10 @@
   outline: 3px solid #55c57a;
   outline-offset: 3px;
 }
+.btn:disabled {
+  background: #999999;
+  cursor: default;
+}
 .btn,
 .btn:link,
 .btn:visited {
@@ -193,8 +203,44 @@
 }
 
 .user-view__content {
+  position: relative;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
   padding: 7rem 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  background: rgba(59, 58, 58, 0.38);
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+
+.spinner {
+  position: fixed;
+  top: 40%;
+  left: 60%;
+  z-index: 99;
+}
+
+input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  text-align: right;
+  z-index: 2;
+  width: 5px;
+}
+
+label.upload-container {
+  position: relative;
+  color: #55c57a;
+  border-bottom: 1px solid #55c57a;
+  padding: 1rem 1rem;
+}
+
+label.upload-container:hover {
+  cursor: pointer;
 }

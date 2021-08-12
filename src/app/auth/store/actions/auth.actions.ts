@@ -1,6 +1,13 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
+import { User } from '../../interfaces';
+
 
 export const autoLogin = createAction('[Auth - App Init] Auto Login Check');
+
+export const updateUserAuthData = createAction(
+  '[Auth] Update User Auth Data',
+  props<{ user: User }>()
+);
 
 export const invalidStoredUserData = createAction('[Auth] Invalid Stored User Data');
 

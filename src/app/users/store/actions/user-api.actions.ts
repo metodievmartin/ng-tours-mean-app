@@ -1,6 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 import { Booking } from '../../interfaces';
+import { User } from '../../../auth/interfaces';
 
+
+export const updateUserInfoSuccess = createAction(
+  '[Users API] Update User Info Success',
+  props<{ user: User}>()
+);
+
+export const updateUserInfoFailure = createAction(
+  '[Users API] Update User Info Failure',
+  props<{ error: any}>()
+);
 
 export const fetchBookingsSuccess = createAction(
   '[Users API] Fetch Bookings Success',
