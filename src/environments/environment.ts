@@ -9,6 +9,7 @@ export const environment = {
   signupUrl: '/api/v1/users/signup/',
   loginUrl: '/api/v1/users/login/',
   allToursUrl: '/api/v1/tours/',
+  myToursUrl: '/api/v1/tours/booked',
   topFiveToursUrl: '/api/v1/tours/top-5-cheap',
   oneTourBySlugUrl: '/api/v1/tours/slug/',
   allBookingsUrl: '/api/v1/bookings/',
