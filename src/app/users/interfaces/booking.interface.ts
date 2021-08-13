@@ -1,4 +1,5 @@
 import { User } from '../../auth/interfaces';
+import { Location } from '../../tours/interfaces';
 
 
 export interface Booking {
@@ -14,6 +15,7 @@ export interface Booking {
       description: string;
       address: string;
     }
+    locations: Location[];
     startDates: string[];
     guides: User[],
     _id: string;
@@ -27,6 +29,7 @@ export interface Booking {
   user: {
     _id: string;
     name: string;
+    email: string;
   },
   price: number;
 }
