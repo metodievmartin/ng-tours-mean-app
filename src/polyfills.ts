@@ -63,3 +63,8 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// Included here as is needed for ngx-mapbox-gl to work properly
+// as per -> https://github.com/Wykks/ngx-mapbox-gl/issues/136#issuecomment-496224634
+(window as any).global = window;
+
