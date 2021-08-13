@@ -43,6 +43,10 @@
   font-size: 1.7rem;
 }
 
+.name h3 {
+  max-width: 25rem;
+}
+
 .btn--green {
   background-color: #55c57a;
   color: #fff;

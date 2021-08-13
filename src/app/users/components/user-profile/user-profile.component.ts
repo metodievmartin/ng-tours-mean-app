@@ -10,6 +10,7 @@ import { UserActions } from '../../store/actions';
 })
 export class UserProfileComponent implements OnInit {
   notification: string | null = null;
+  error: string | null = null;
 
   constructor(
     public store: Store<fromApp.AppState>
@@ -17,7 +18,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(state => state.users)
-      .subscribe(usersState => this.notification = usersState.notification);
+      .subscribe(usersState => {
+        this.notification = usersState.notification;
+        this.error = usersState.error;
+      });
   }
 
   closeAlert() {

@@ -2,8 +2,9 @@
   <div class="user-view">
 
     <app-alert
-      *ngIf="notification"
-      [message]="notification"
+      *ngIf="notification || error"
+      [alertType]="error? 'error' : 'success'"
+      [message]="notification || error"
       (onClose)="closeAlert()">
     </app-alert>
 

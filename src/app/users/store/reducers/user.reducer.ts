@@ -88,6 +88,7 @@ export const reducer = createReducer(
 
   on(UserActions.clearNotification, (state) => ({
     ...state,
-    notification: null
+    notification: null,
+    error: null
   }))
 );

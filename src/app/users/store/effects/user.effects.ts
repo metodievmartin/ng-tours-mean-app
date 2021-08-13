@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserActions, UserApiActions, UserBookingActions } from '../actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 import { UsersService } from '../../services';
 import { AuthApiActions } from '../../../auth/store/actions';
@@ -17,7 +17,10 @@ export class UserEffects {
         return this.usersService.updateCurrentUserInfo(action.name, action.email, action.photo).pipe(
           map(res => res.data.user),
           map(user => UserApiActions.updateUserInfoSuccess({ user: user })),
-          catchError(error => of(UserApiActions.updateUserInfoFailure({ error })))
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(UserApiActions.updateUserInfoFailure({ error }))
+          })
         )
       })
     )
@@ -33,7 +36,10 @@ export class UserEffects {
               UserApiActions.updateCurrentUserPasswordSuccess(),
               AuthApiActions.authSuccess({ authResponse, redirect: false })
             )),
-          catchError(error => of(UserApiActions.updateCurrentUserPasswordFailure({ error })))
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(UserApiActions.updateCurrentUserPasswordFailure({ error }))
+          })
         )
       })
     )
@@ -46,7 +52,10 @@ export class UserEffects {
         return this.usersService.getBookingDetails(action.bookingId).pipe(
           map(res => res.data.data),
           map(bookingDetails => UserApiActions.fetchBookingDetailsSuccess({ bookingDetails })),
-          catchError(error => of(UserApiActions.fetchBookingDetailsFailure({ error })))
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(UserApiActions.fetchBookingDetailsFailure({ error }))
+          })
         )
       })
     )
@@ -59,11 +68,24 @@ export class UserEffects {
         return this.usersService.getAllCompleteAndPaidBookings().pipe(
           map(res => res.data.data),
           map(bookings => UserApiActions.fetchBookingsSuccess({ bookings })),
-          catchError(error => of(UserApiActions.fetchBookingsFailure({ error })))
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(UserApiActions.fetchBookingsFailure({ error }))
+          })
         )
       })
     )
   );
+
+  private mapErrorMessage(error: any): string {
+    let errorMsg = 'Something went wrong. Please try again later';
+
+    if (error.statusText !== 'Unknown Error') {
+      errorMsg = error.error.message;
+    }
+
+    return errorMsg;
+  }
 
   constructor(
     private actions$: Actions,
