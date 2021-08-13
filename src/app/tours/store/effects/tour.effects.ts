@@ -55,10 +55,21 @@ export class TourEffects {
         return this.tourService.getOneTourBySlug(action.tourSlug).pipe(
           map(res => res.data.data),
           map(tour => TourApiActions.fetchOneTourSuccess({ tour })),
-          catchError(error => of(TourApiActions.fetchOneTourFailure({ error })))
+          catchError(error => {
+            if (error.status === 404) return of(TourActions.pageNotFound());
+            return of(TourApiActions.fetchOneTourFailure({ error }))
+          })
         )
       })
     )
+  );
+
+  pageNotFound$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TourActions.pageNotFound),
+      tap(() => this.router.navigate(['/page-not-found']))
+    ),
+    { dispatch: false }
   );
 
   startCheckout$ = createEffect(() =>

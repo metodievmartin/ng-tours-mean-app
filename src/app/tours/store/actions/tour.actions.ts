@@ -28,6 +28,11 @@ export const redirect = createAction(
   props<{ path: string }>()
 );
 
+export const pageNotFound = createAction(
+  '[Tour Details Page] Page Not Found'
+);
+
+
 
 
 

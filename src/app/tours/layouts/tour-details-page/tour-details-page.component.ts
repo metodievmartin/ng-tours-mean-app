@@ -24,7 +24,6 @@ export class TourDetailsPageComponent implements OnInit {
   constructor(
     private store: Store<fromApp.AppState>,
     private route: ActivatedRoute,
-    private checkout: CheckoutService
   ) { }
 
   ngOnInit(): void {
