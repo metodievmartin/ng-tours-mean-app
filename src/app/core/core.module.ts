@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({

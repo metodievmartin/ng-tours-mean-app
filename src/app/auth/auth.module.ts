@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LoginPageComponent } from './layouts/login-page/login-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { RegisterPageComponent } from './layouts/register-page/register-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';

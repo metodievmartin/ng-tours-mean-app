@@ -1,18 +1,4 @@
-export interface AuthResponse {
-  status: string;
-  token: string;
-  tokenExpirationDate: string;
-  data: {
-    user: User
-  }
-}
+export * from './auth-response.interface';
+export * from './user.interface';
 
-export interface User {
-  photo: string;
-  role: string;
-  _id: string;
-  name: string;
-  email: string;
-  __v?: number;
-  passwordChangedAt?: string;
-}
+

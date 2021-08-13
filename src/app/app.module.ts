@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from './auth/store/effects';
-import { AuthInterceptor } from './auth/services';
+import { AuthInterceptor } from './auth/interceptors';
 
 
 @NgModule({
