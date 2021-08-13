@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { AllBookingsResponse, UpdateUserResponse } from '../interfaces';
+import { AllBookingsResponse, BookingDetailsResponse, UpdateUserResponse } from '../interfaces';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../../auth/interfaces';
 
@@ -24,6 +24,10 @@ export class UsersService {
 
   getAllCompleteAndPaidBookings(): Observable<AllBookingsResponse> {
     return this.http.get<AllBookingsResponse>(this.host + this.allCompletedAndPaidBookings);
+  }
+
+  getBookingDetails(bookingId: string): Observable<BookingDetailsResponse> {
+    return this.http.get<BookingDetailsResponse>(this.host + this.allBookings + bookingId);
   }
 
   updateCurrentUserInfo(name: string, email: string, photo: File | null): Observable<UpdateUserResponse> {

@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookingDetailsPageComponent } from './components/user-profile/booking-details-page/booking-details-page.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SideNavItemComponent,
     UserSettingsComponent,
     UserBookingsComponent,
-    BookingItemComponent
+    BookingItemComponent,
+    BookingDetailsPageComponent
   ],
   exports: [
     UserProfileComponent

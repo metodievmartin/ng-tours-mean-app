@@ -39,6 +39,19 @@ export class UserEffects {
     )
   );
 
+  getBookingDetails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserBookingActions.fetchBookingDetails),
+      switchMap(action => {
+        return this.usersService.getBookingDetails(action.bookingId).pipe(
+          map(res => res.data.data),
+          map(bookingDetails => UserApiActions.fetchBookingDetailsSuccess({ bookingDetails })),
+          catchError(error => of(UserApiActions.fetchBookingDetailsFailure({ error })))
+        )
+      })
+    )
+  );
+
   getAllUserBookings$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserBookingActions.fetchUserBookings),

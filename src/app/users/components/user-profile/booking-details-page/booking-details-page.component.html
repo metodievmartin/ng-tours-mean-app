@@ -1,0 +1,111 @@
+<div class="page-container">
+
+  <section class="page-view">
+    <article class="header">
+      <h2 class="heading-secondary ma-bt-md">Booking Details</h2>
+      <a class="heading-secondary" id="go-back" routerLink="/my-profile/bookings">&#8249; Go back</a>
+    </article>
+
+    <ng-container *ngIf="loading">
+      <app-spinner *ngIf="loading" class="spinner"></app-spinner>
+    </ng-container>
+
+    <ng-container *ngIf="booking && !loading">
+      <section *ngIf="booking.tour" class="tour-summary">
+
+        <h4 class="heading-secondary ma-bt-md">Tour summary</h4>
+
+        <article class="tour-cover-container">
+          <img [src]="[tourImagesUrl + booking.tour.imageCover]" alt="tour-cover-photo">
+        </article>
+
+        <article class="summary-detail">
+          <p><strong>Name:</strong></p>
+          <p>{{ booking.tour.name }} Tour</p>
+        </article>
+
+        <article class="summary-detail">
+          <p><strong>Start Location:</strong></p>
+          <span>{{ booking.tour.startLocation.address }}</span>
+        </article>
+
+        <article class="summary-detail">
+          <p><strong>Schedule:</strong></p>
+          <p *ngFor="let location of booking.tour.locations">
+            | <strong>Day {{location.day}}:</strong> {{ location.description }}
+          </p>
+        </article>
+
+        <section class="guides-dates">
+
+          <article>
+            <p class="sub-heading"><strong>Tour guides:</strong></p>
+            <div *ngFor="let user of booking.tour.guides" class="overview-box__detail">
+              <img class="overview-box__img" [src]="[userImagesUrl + user.photo]" alt="tour-guide-photo">
+              <span class="overview-box__label">{{ user.role }}</span>
+              <span class="overview-box__text">{{ user.name }}</span>
+            </div>
+          </article>
+
+          <article>
+            <p class="sub-heading"><strong>Available dates: </strong></p>
+            <div *ngFor="let date of booking.tour.startDates" class="dates-container">
+              <svg class="overview-box__icon">
+                <use xlink:href="/assets/img/icons.svg#icon-calendar"></use>
+              </svg>
+              <p class="date">
+                {{ date | date:'fullDate' }}
+              </p>
+            </div>
+            <p *ngIf="!booking.tour.startDates || booking.tour.startDates.length === 0">
+              Currently there are no dates available...
+            </p>
+          </article>
+
+        </section>
+
+        <article class="btn-container">
+          <a class="btn btn--small btn--green" [routerLink]="['/tours', booking.tour.slug]">Tour Details</a>
+        </article>
+
+      </section>
+
+      <div class="line">&nbsp;</div>
+
+      <section>
+        <h4 class="heading-secondary ma-bt-md">Booking summary</h4>
+
+        <article class="summary-detail">
+          <p><strong>Status: </strong>{{booking.status | uppercase}}</p>
+        </article>
+
+        <article class="summary-detail">
+          <p>
+            <strong>Payment: </strong>
+            {{booking.paid ? (booking.finishedAt | date:'full') : 'N/A'}}</p>
+        </article>
+
+        <article class="summary-detail">
+          <p>
+            <strong>Order: </strong>
+            {{booking.paid ? 'CONFIRMED' : 'N/A'}}</p>
+        </article>
+
+        <article class="summary-detail">
+          <p><strong>Price: </strong>{{booking.price | currency:'USD'}}</p>
+        </article>
+
+        <article class="summary-detail">
+          <p><strong>Name: </strong>{{booking.user.name | uppercase}}</p>
+        </article>
+
+        <article class="summary-detail">
+          <p><strong>Email: </strong>{{booking.user.email}}</p>
+        </article>
+
+      </section>
+
+    </ng-container>
+
+  </section>
+</div>

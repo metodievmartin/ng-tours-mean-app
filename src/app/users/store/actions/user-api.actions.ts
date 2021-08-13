@@ -31,3 +31,13 @@ export const fetchBookingsFailure = createAction(
   '[Users API] Fetch Bookings Failure',
   props<{ error: any}>()
 );
+
+export const fetchBookingDetailsSuccess = createAction(
+  '[Users API] Fetch Booking Details Success',
+  props<{ bookingDetails: Booking }>()
+);
+
+export const fetchBookingDetailsFailure = createAction(
+  '[Users API] Fetch Booking Details Failure',
+  props<{ error: any}>()
+);

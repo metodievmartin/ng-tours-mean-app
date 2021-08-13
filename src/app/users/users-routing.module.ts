@@ -5,12 +5,14 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserSettingsComponent } from './components/user-profile/user-settings/user-settings.component';
 import { AuthGuard } from '../auth/guards';
 import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
+import { BookingDetailsPageComponent } from './components/user-profile/booking-details-page/booking-details-page.component';
 
 
 const usersRoutes: Routes = [
   { path: '', component: UserProfileComponent, canActivate: [AuthGuard], children: [
       { path: '', component: UserSettingsComponent },
       { path: 'bookings', component: UserBookingsComponent },
+      { path: 'bookings/:id', component: BookingDetailsPageComponent },
     ] }
 ];
 
