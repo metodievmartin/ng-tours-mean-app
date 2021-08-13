@@ -21,6 +21,8 @@
     "@ngrx/effects": "^12.3.0",
     "@ngrx/store": "^12.3.0",
     "@ngrx/store-devtools": "^12.3.0",
+    "mapbox-gl": "^2.4.0",
+    "ngx-mapbox-gl": "^7.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -30,6 +32,7 @@
     "@angular/cli": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
     "@types/jasmine": "~3.6.0",
+    "@types/mapbox-gl": "^2.4.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
