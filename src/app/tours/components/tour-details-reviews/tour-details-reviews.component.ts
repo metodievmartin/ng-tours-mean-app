@@ -8,6 +8,7 @@ import { Review } from '../../interfaces';
 })
 export class TourDetailsReviewsComponent implements OnInit {
   @Input() reviews: Review[] | undefined;
+  @Input() userImagesUrl: string = '';
 
   constructor() {
   }

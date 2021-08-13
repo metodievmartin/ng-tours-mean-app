@@ -1,7 +1,7 @@
 <section class="section-reviews">
   <div class="reviews">
     <div class="reviews__card" *ngFor="let review of reviews">
-      <div class="reviews__avatar"><img class="reviews__avatar-img" src="/src/assets/img/default.jpg" alt="Jim Brown"/>
+      <div class="reviews__avatar"><img class="reviews__avatar-img" [src]="[userImagesUrl + review.user.photo]" alt="Jim Brown"/>
         <h6 class="reviews__user">{{ review.user.name }}</h6>
       </div>
       <p class="reviews__text">{{ review.review }}</p>
@@ -15,6 +15,9 @@
           </svg>
         </ng-container>
       </div>
+    </div>
+    <div *ngIf="!reviews || reviews.length === 0">
+      <h1 class="heading-primary"><span>There are no reviews for this tour yet...</span></h1>
     </div>
   </div>
 </section>

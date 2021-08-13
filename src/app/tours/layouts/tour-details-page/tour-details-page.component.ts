@@ -15,6 +15,7 @@ import { CheckoutService } from '../../services';
 })
 export class TourDetailsPageComponent implements OnInit {
   tourImagesUrl = environment.restApiHost + environment.tourImg;
+  userImagesUrl = environment.restApiHost + environment.userImg;
   tour: Tour | null = null;
   loading: boolean = false;
   isAuthenticated: boolean = false;
