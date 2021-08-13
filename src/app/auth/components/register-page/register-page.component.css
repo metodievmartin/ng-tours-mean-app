@@ -69,10 +69,10 @@ main {
 input:focus {
   outline: none;
 }
-input.ng-dirty.ng-valid {
+input.ng-dirty.ng-valid:not(.pass-not-match) {
   border-bottom: 3px solid #55c57a;
 }
-input.ng-dirty.ng-invalid {
+input.ng-dirty.ng-invalid, input.pass-not-match {
   border-bottom: 3px solid #ff5c09;
 }
 .form__input::-webkit-input-placeholder {

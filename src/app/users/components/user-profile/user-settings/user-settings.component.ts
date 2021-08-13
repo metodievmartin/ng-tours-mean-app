@@ -51,6 +51,11 @@ export class UserSettingsComponent implements OnInit {
       return;
     }
 
+    if (this.passwordUpdateForm.controls.newPassword !==
+      this.passwordUpdateForm.controls.passwordConfirm){
+      return;
+    }
+
     const { name, email, photo } = this.infoUpdateForm.value;
 
     console.log(this.infoUpdateForm.value)

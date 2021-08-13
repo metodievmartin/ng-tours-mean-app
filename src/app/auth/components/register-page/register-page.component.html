@@ -55,6 +55,9 @@
         <label class="form__label" for="password">Confirm Password</label>
         <input
           class="form__input"
+          [ngClass]="{'pass-not-match': registerForm.controls.password.value !==
+           registerForm.controls.passwordConfirm.value
+           && registerForm.controls.passwordConfirm.touched}"
           id="passwordConfirm"
           type="password"
           placeholder="••••••••"

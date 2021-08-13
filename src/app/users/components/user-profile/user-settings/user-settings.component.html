@@ -68,19 +68,40 @@
           placeholder="••••••••"
           formControlName="newPassword"
         />
+        <p
+          *ngIf="passwordUpdateForm.controls.newPassword.errors?.minlength &&
+           passwordUpdateForm.controls.newPassword.touched"
+          class="error-notification">
+          Password must be at least 8 characters long
+        </p>
       </div>
       <div class="form__group ma-bt-lg">
         <label class="form__label" for="password-confirm">Confirm password</label>
         <input
           class="form__input"
+          [ngClass]="{'pass-not-match': passwordUpdateForm.controls.newPassword.value !==
+           passwordUpdateForm.controls.passwordConfirm.value &&
+           passwordUpdateForm.controls.passwordConfirm.touched}"
           id="password-confirm"
           type="password"
           placeholder="••••••••"
           formControlName="passwordConfirm"
         />
+        <p
+          *ngIf="passwordUpdateForm.controls.newPassword.value !==
+           passwordUpdateForm.controls.passwordConfirm.value
+           && passwordUpdateForm.controls.passwordConfirm.touched"
+          class="error-notification">
+          Passwords don't match
+        </p>
       </div>
       <div class="form__group right">
-        <button class="btn btn--small btn--green">Save password</button>
+        <button
+          class="btn btn--small btn--green"
+          type="submit"
+          [disabled]="!passwordUpdateForm.valid">
+          Save password
+        </button>
       </div>
     </form>
   </div>

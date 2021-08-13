@@ -34,6 +34,8 @@ export class RegisterPageComponent implements OnInit {
   onSubmit() {
     if (!this.registerForm.valid) return;
 
+    if (this.registerForm.controls.password !== this.registerForm.controls.passwordConfirm) return;
+
     const { name, email, password, passwordConfirm } = this.registerForm.value;
     this.store.dispatch(
       RegisterPageActions.register({ name, email, password, passwordConfirm })
