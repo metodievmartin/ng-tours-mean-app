@@ -1,3 +1,46 @@
 <section class="section-map">
-  <div id="map"></div>
+  <mgl-map
+    [style]="mapStyle"
+    [zoom]="[mapZoom]"
+    [center]="[startLocation.coordinates[0], startLocation.coordinates[1]]"
+  >
+
+    <mgl-marker
+      #startMarker
+      [lngLat]="[startLocation.coordinates[0],startLocation.coordinates[1]]">
+      <div class="marker start"></div>
+    </mgl-marker>
+
+    <mgl-popup
+      [marker]="startMarker">
+      <section class="logo">
+        <img src="/assets/img/logo-green.png" alt="natours-logo">
+      </section>
+      <section class="info-container">
+        <p class="popup-title-start"><strong> Start Location:</strong> {{ startLocation.address }}</p>
+        <article class="popup-start-description">
+          <span><strong>08:00:</strong> Lorem ipsum dolor sit amet</span>
+        </article>
+      </section>
+    </mgl-popup>
+
+    <ng-container *ngFor="let location of locations">
+      <mgl-marker
+        #myMarker
+        [lngLat]="[location.coordinates[0],location.coordinates[1]]">
+        <div class="marker"></div>
+      </mgl-marker>
+
+      <mgl-popup
+        [marker]="myMarker">
+        <p class="popup-title"><strong>Day {{ location.day }}:</strong>  {{ location.description }}</p>
+        <article class="popup-content-description">
+          <span><strong>10:00:</strong> Lorem ipsum dolor sit amet</span>
+          <span><strong>14:00:</strong> Sit amet cursus sit amet dictum sit amet justo. </span>
+          <span><strong>18:00:</strong> Sed velit dignissim sodales ut. Carpe diem!</span>
+        </article>
+      </mgl-popup>
+    </ng-container>
+
+  </mgl-map>
 </section>

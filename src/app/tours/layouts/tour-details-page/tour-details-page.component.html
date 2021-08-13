@@ -27,7 +27,10 @@
     [images]="tour.images">
   </app-tour-details-pictures>
 
-  <app-tour-details-map></app-tour-details-map>
+  <app-tour-details-map
+  [startLocation]="tour.startLocation"
+  [locations]="tour.locations">
+  </app-tour-details-map>
 
   <app-tour-details-reviews
     [reviews]="tour.reviews">

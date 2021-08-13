@@ -4,30 +4,61 @@
   margin-top: calc(0px - var(--section-rotate));
 }
 
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-
 .marker {
-  /*background-image: url('/assets/img/pin.png');*/
+  background-image: url('../../../../assets/img/pin.png');
   background-size: cover;
   width: 32px;
   height: 40px;
   cursor: pointer;
+  z-index: 10;
 }
 
-.mapboxgl-popup {
-  max-width: 25rem;
+.marker.start {
+  background-image: url('../../../../assets/img/pin-start.png');
 }
 
-.mapboxgl-popup-content {
+.logo {
+  padding-top: 1rem;
   text-align: center;
+}
+
+.logo img{
+  width: 90%;
+}
+
+.mgl-popup {
+  max-width: 25rem;
+  background: white;
+  padding: 0 3rem;
+}
+
+.info-container, .popup-content-description  {
+  padding: 1rem;
+}
+
+.popup-title,
+.popup-title-start,
+.popup-content-description span {
   font-family: 'Lato', sans-serif;
-  padding: 1.5rem !important;
+}
+
+.popup-title,
+.popup-title-start {
+  padding: 1.5rem 0;
   font-size: 1.4rem;
-  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.popup-title {
+  text-align: center;
+
+}
+
+.popup-content-description span{
+  font-style: italic;
+  display: block;
+}
+
+mgl-map {
+  height: 100%;
+  width: 100%;
 }
