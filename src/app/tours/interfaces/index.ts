@@ -1,12 +1,7 @@
 import { User } from '../../auth/interfaces';
 
 export interface Tour {
-  startLocation: {
-    type: string;
-    coordinates: number[];
-    description: string;
-    address: string;
-  },
+  startLocation: StartLocation;
   ratingsAverage: number;
   ratingsQuantity: number;
   images: string[];
@@ -23,12 +18,27 @@ export interface Tour {
   summary: string;
   description: string;
   imageCover: string;
-  locations: [],
+  locations: Location[],
   slug: string;
   __v: number;
   durationWeeks: number;
   reviews: Review[],
   id: string;
+}
+
+export interface StartLocation {
+  type: string;
+  coordinates: number[];
+  description: string;
+  address: string;
+}
+
+export interface Location {
+  type: string;
+  coordinates: number[];
+  description: string;
+  day: number;
+  _id: string;
 }
 
 export interface AllToursResponse {
