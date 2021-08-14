@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../../../reducers';
-import { Booking } from '../../../interfaces';
+import * as fromApp from '../../../reducers';
+import { Booking } from '../../interfaces';
 import { ActivatedRoute } from '@angular/router';
-import { UserBookingActions } from '../../../store/actions';
-import { environment } from '../../../../../environments/environment';
+import { UserBookingActions } from '../../store/actions';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-booking-details',

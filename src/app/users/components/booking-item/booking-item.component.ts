@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Booking } from '../../../interfaces';
+import { Booking } from '../../interfaces';
 
 @Component({
   selector: 'app-booking-item',

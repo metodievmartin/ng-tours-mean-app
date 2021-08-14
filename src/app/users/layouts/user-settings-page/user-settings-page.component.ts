@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../../../reducers';
-import { UserActions } from '../../../store/actions';
-import { User } from '../../../../auth/interfaces';
-import { environment } from '../../../../../environments/environment';
+import * as fromApp from '../../../reducers';
+import { UserActions } from '../../store/actions';
+import { User } from '../../../auth/interfaces';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-user-settings',
-  templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.css']
+  templateUrl: './user-settings-page.component.html',
+  styleUrls: ['./user-settings-page.component.css']
 })
-export class UserSettingsComponent implements OnInit {
+export class UserSettingsPageComponent implements OnInit {
   userImagesUrl = environment.restApiHost + environment.userImg;
   user: User | null = null;
   loading = false;
@@ -56,8 +56,6 @@ export class UserSettingsComponent implements OnInit {
     }
 
     const { name, email, photo } = this.infoUpdateForm.value;
-
-    console.log(this.infoUpdateForm.value)
 
     this.store.dispatch(
       UserActions.updateCurrentUserInfo({ name, email, photo })

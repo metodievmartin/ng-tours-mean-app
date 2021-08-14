@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { UserSettingsComponent } from './components/user-profile/user-settings/user-settings.component';
+import { UserDashboardComponent } from './layouts/user-dashboard/user-dashboard.component';
+import { UserSettingsPageComponent } from './layouts/user-settings-page/user-settings-page.component';
 import { AuthGuard } from '../auth/guards';
-import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
-import { BookingDetailsPageComponent } from './components/user-profile/booking-details-page/booking-details-page.component';
+import { UserBookingsPageComponent } from './layouts/user-bookings-page/user-bookings-page.component';
+import { BookingDetailsPageComponent } from './layouts/booking-details-page/booking-details-page.component';
 import { UserReviewsPageComponent } from './layouts/user-reviews-page/user-reviews-page.component';
 
 
 const usersRoutes: Routes = [
   { path: '',
-    component: UserProfileComponent,
+    component: UserDashboardComponent,
     canActivate: [AuthGuard],
     data: { isAuthenticationRequired: true },
     children: [
-      { path: '', component: UserSettingsComponent },
-      { path: 'bookings', component: UserBookingsComponent },
+      { path: '', component: UserSettingsPageComponent },
+      { path: 'bookings', component: UserBookingsPageComponent },
       { path: 'bookings/:id', component: BookingDetailsPageComponent },
       { path: 'reviews', component: UserReviewsPageComponent },
     ]

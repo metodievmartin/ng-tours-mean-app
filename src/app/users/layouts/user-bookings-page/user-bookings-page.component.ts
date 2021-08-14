@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../../../reducers';
-import { Booking } from '../../../interfaces';
-import { UserBookingActions } from '../../../store/actions';
-import { environment } from '../../../../../environments/environment';
+import * as fromApp from '../../../reducers';
+import { Booking } from '../../interfaces';
+import { UserBookingActions } from '../../store/actions';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
   selector: 'app-user-bookings',
-  templateUrl: './user-bookings.component.html',
-  styleUrls: ['./user-bookings.component.css']
+  templateUrl: './user-bookings-page.component.html',
+  styleUrls: ['./user-bookings-page.component.css']
 })
-export class UserBookingsComponent implements OnInit {
+export class UserBookingsPageComponent implements OnInit {
   tourImagesUrl = environment.restApiHost + environment.tourImg;
   bookings: Booking[] = [];
   loading = false;
