@@ -7,6 +7,7 @@ import { AuthGuard } from '../auth/guards';
 import { UserBookingsPageComponent } from './layouts/user-bookings-page/user-bookings-page.component';
 import { BookingDetailsPageComponent } from './layouts/booking-details-page/booking-details-page.component';
 import { UserReviewsPageComponent } from './layouts/user-reviews-page/user-reviews-page.component';
+import { UserBillingPageComponent } from './layouts/user-billing-page/user-billing-page.component';
 
 
 const usersRoutes: Routes = [
@@ -19,6 +20,7 @@ const usersRoutes: Routes = [
       { path: 'bookings', component: UserBookingsPageComponent },
       { path: 'bookings/:id', component: BookingDetailsPageComponent },
       { path: 'reviews', component: UserReviewsPageComponent },
+      { path: 'billing', component: UserBillingPageComponent },
     ]
   }
 ];

@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BookingDetailsPageComponent } from './layouts/booking-details-page/booking-details-page.component';
 import { UserReviewsPageComponent } from './layouts/user-reviews-page/user-reviews-page.component';
 import { ReviewItemComponent } from './components/review-item/review-item.component';
+import { UserBillingPageComponent } from './layouts/user-billing-page/user-billing-page.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ReviewItemComponent } from './components/review-item/review-item.compon
     BookingItemComponent,
     BookingDetailsPageComponent,
     UserReviewsPageComponent,
-    ReviewItemComponent
+    ReviewItemComponent,
+    UserBillingPageComponent
   ],
   exports: [
     UserDashboardComponent
