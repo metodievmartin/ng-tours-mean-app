@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { UserActions, UserApiActions, UserBookingActions } from '../actions';
+import { UserActions, UserApiActions, UserBookingActions, UserReviewActions } from '../actions';
 import { Booking } from '../../interfaces';
+import { Review } from '../../../tours/interfaces';
 
 const updateUserInfoSuccess = 'Details updated successfully ';
 const updateUserPasswordSuccess = 'Password updated successfully ';
@@ -9,6 +10,7 @@ const updateUserPasswordSuccess = 'Password updated successfully ';
 export interface State {
   bookings: Booking[];
   bookingDetails: Booking | null;
+  userReviews: Review[];
   notification: string | null;
   error: string | null;
   loading: boolean;
@@ -17,6 +19,7 @@ export interface State {
 export const initialState: State = {
   bookings: [],
   bookingDetails: null,
+  userReviews: [],
   notification: null,
   error: null,
   loading: false,
@@ -30,6 +33,7 @@ export const reducer = createReducer(
     UserActions.updateCurrentUserPassword,
     UserBookingActions.fetchUserBookings,
     UserBookingActions.fetchBookingDetails,
+    UserReviewActions.fetchUserReviews,
     (state) => ({
       ...state,
       error: null,
@@ -82,6 +86,20 @@ export const reducer = createReducer(
   on(UserApiActions.fetchBookingDetailsFailure, (state, { error }) => ({
     ...state,
     bookingDetails: null,
+    error,
+    loading: false
+  })),
+
+  on(UserApiActions.fetchUserReviewsSuccess, (state, { userReviews }) => ({
+    ...state,
+    userReviews,
+    error: null,
+    loading: false
+  })),
+
+  on(UserApiActions.fetchUserReviewsFailure, (state, { error }) => ({
+    ...state,
+    userReviews: [],
     error,
     loading: false
   })),

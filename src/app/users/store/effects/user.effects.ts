@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserActions, UserApiActions, UserBookingActions } from '../actions';
+import { UserActions, UserApiActions, UserBookingActions, UserReviewActions } from '../actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -71,6 +71,22 @@ export class UserEffects {
           catchError(err => {
             const error = this.mapErrorMessage(err);
             return of(UserApiActions.fetchBookingsFailure({ error }))
+          })
+        )
+      })
+    )
+  );
+
+  getCurrentUserReviews$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserReviewActions.fetchUserReviews),
+      switchMap(() => {
+        return this.usersService.getCurrentUserReviews().pipe(
+          map(res => res.data.data),
+          map(userReviews => UserApiActions.fetchUserReviewsSuccess({ userReviews })),
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(UserApiActions.fetchUserReviewsFailure({ error }))
           })
         )
       })

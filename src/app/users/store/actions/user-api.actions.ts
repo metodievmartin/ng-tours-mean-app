@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Booking } from '../../interfaces';
 import { User } from '../../../auth/interfaces';
+import { Review } from '../../../tours/interfaces';
 
 
 export const updateUserInfoSuccess = createAction(
@@ -39,5 +40,15 @@ export const fetchBookingDetailsSuccess = createAction(
 
 export const fetchBookingDetailsFailure = createAction(
   '[Users API] Fetch Booking Details Failure',
+  props<{ error: any}>()
+);
+
+export const fetchUserReviewsSuccess = createAction(
+  '[Users API] Fetch User Reviews Success',
+  props<{ userReviews: Review[] }>()
+);
+
+export const fetchUserReviewsFailure = createAction(
+  '[Users API] Fetch User Reviews Failure',
   props<{ error: any}>()
 );

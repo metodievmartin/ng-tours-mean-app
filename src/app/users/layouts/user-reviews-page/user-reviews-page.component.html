@@ -1,0 +1,22 @@
+<div class="user-view__content">
+
+  <div class="user-view__form-container">
+    <h2 class="heading-secondary ma-bt-md">My reviews</h2>
+
+    <ng-container *ngIf="loading">
+      <app-spinner *ngIf="loading" class="spinner"></app-spinner>
+    </ng-container>
+
+    <ng-container *ngIf="!loading">
+      <app-review-item
+        *ngFor="let review of reviews"
+        [review]="review"
+      ></app-review-item>
+    </ng-container>
+
+    <ng-container *ngIf="!loading && reviews.length === 0">
+      <p class="no-reviews">You have no reviews yet...</p>
+    </ng-container>
+
+  </div>
+</div>

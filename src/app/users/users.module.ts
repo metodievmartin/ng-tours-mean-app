@@ -12,6 +12,8 @@ import { UserEffects } from './store/effects/user.effects';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookingDetailsPageComponent } from './components/user-profile/booking-details-page/booking-details-page.component';
+import { UserReviewsPageComponent } from './layouts/user-reviews-page/user-reviews-page.component';
+import { ReviewItemComponent } from './components/review-item/review-item.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { BookingDetailsPageComponent } from './components/user-profile/booking-d
     UserSettingsComponent,
     UserBookingsComponent,
     BookingItemComponent,
-    BookingDetailsPageComponent
+    BookingDetailsPageComponent,
+    UserReviewsPageComponent,
+    ReviewItemComponent
   ],
   exports: [
     UserProfileComponent

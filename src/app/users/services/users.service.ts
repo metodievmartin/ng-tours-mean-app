@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { AllBookingsResponse, BookingDetailsResponse, UpdateUserResponse } from '../interfaces';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
+import { AllBookingsResponse, AllReviewsResponse, BookingDetailsResponse, UpdateUserResponse } from '../interfaces';
 import { AuthResponse } from '../../auth/interfaces';
 
 
@@ -13,6 +14,7 @@ export class UsersService {
   private updatePassword= environment.updateUserPasswordUrl;
   private allBookings = environment.allBookingsUrl;
   private allCompletedAndPaidBookings = environment.allCompleteAndPaidBookingsUrl;
+  private currentUserReviews = environment.currentUserReviewsUrl;
 
   constructor(
     private http: HttpClient
@@ -57,5 +59,9 @@ export class UsersService {
 
     console.log(body);
     return this.http.patch<AuthResponse>(this.host + this.updatePassword, body);
+  }
+
+  getCurrentUserReviews(): Observable<AllReviewsResponse> {
+    return this.http.get<AllReviewsResponse>(this.host + this.currentUserReviews);
   }
 }

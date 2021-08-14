@@ -6,6 +6,7 @@ import { UserSettingsComponent } from './components/user-profile/user-settings/u
 import { AuthGuard } from '../auth/guards';
 import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
 import { BookingDetailsPageComponent } from './components/user-profile/booking-details-page/booking-details-page.component';
+import { UserReviewsPageComponent } from './layouts/user-reviews-page/user-reviews-page.component';
 
 
 const usersRoutes: Routes = [
@@ -17,6 +18,7 @@ const usersRoutes: Routes = [
       { path: '', component: UserSettingsComponent },
       { path: 'bookings', component: UserBookingsComponent },
       { path: 'bookings/:id', component: BookingDetailsPageComponent },
+      { path: 'reviews', component: UserReviewsPageComponent },
     ]
   }
 ];
