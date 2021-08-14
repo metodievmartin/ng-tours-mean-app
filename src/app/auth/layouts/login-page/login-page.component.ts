@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import * as fromApp from '../../../reducers';
 import { AuthActions, LoginPageActions } from '../../store/actions';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,9 +12,11 @@ import { AuthActions, LoginPageActions } from '../../store/actions';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
+  storeSubscription: Subscription | undefined;
   loading = false;
   error: string | null = null;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -25,7 +28,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(state => state.auth)
+    this.storeSubscription = this.store.select(state => state.auth)
       .subscribe(authState => {
         this.loading = authState.loading;
         this.error = authState.error;
@@ -45,5 +48,11 @@ export class LoginPageComponent implements OnInit {
     this.store.dispatch(
       AuthActions.clearError()
     );
+  }
+
+  ngOnDestroy() {
+    if (this.storeSubscription) {
+      this.storeSubscription.unsubscribe();
+    }
   }
 }

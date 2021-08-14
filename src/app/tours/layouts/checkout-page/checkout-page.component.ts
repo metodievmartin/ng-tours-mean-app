@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 import * as fromApp from '../../../reducers';
 import { StripeApiActions, TourActions } from '../../store/actions';
 import { PurchaseStatus } from '../../store/reducers';
+
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout-page.component.html',
   styleUrls: ['./checkout-page.component.css']
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
+  storeSubscription: Subscription | undefined;
   purchaseStatus = PurchaseStatus.PENDING;
 
   constructor(
@@ -20,7 +23,7 @@ export class CheckoutPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.select(state => state.tours)
+    this.storeSubscription = this.store.select(state => state.tours)
       .subscribe(toursState => this.purchaseStatus = toursState.purchaseStatus);
 
     console.log(this.purchaseStatus);
@@ -42,4 +45,9 @@ export class CheckoutPageComponent implements OnInit {
     this.store.dispatch(TourActions.redirect({ path: '/' }));
   }
 
+  ngOnDestroy() {
+    if (this.storeSubscription) {
+      this.storeSubscription.unsubscribe();
+    }
+  }
 }

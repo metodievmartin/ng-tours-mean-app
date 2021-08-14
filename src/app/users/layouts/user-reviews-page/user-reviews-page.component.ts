@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+
 import * as fromApp from '../../../reducers';
 import { UserReviewActions } from '../../store/actions';
 import { Review } from '../../../tours/interfaces';
+
 
 @Component({
   selector: 'app-user-reviews-page',
   templateUrl: './user-reviews-page.component.html',
   styleUrls: ['./user-reviews-page.component.css']
 })
-export class UserReviewsPageComponent implements OnInit {
+export class UserReviewsPageComponent implements OnInit, OnDestroy {
+  storeSubscription: Subscription | undefined;
   reviews: Review[] = [];
   loading = false;
 
@@ -18,7 +22,7 @@ export class UserReviewsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.select(state => state.users)
+    this.storeSubscription = this.store.select(state => state.users)
       .subscribe(usersState => {
         this.reviews = usersState.userReviews;
         this.loading = usersState.loading;
@@ -27,4 +31,9 @@ export class UserReviewsPageComponent implements OnInit {
     this.store.dispatch(UserReviewActions.fetchUserReviews());
   }
 
+  ngOnDestroy() {
+    if (this.storeSubscription) {
+      this.storeSubscription.unsubscribe();
+    }
+  }
 }

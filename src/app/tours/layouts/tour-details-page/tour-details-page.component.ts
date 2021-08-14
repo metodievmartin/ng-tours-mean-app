@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,13 +7,15 @@ import { TourActions } from '../../store/actions';
 import { Tour } from '../../interfaces';
 import { environment } from '../../../../environments/environment';
 import { CheckoutService } from '../../services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tour-details',
   templateUrl: './tour-details-page.component.html',
   styleUrls: ['./tour-details-page.component.css']
 })
-export class TourDetailsPageComponent implements OnInit {
+export class TourDetailsPageComponent implements OnInit, OnDestroy {
+  storeSubscription: Subscription | undefined;
   tourImagesUrl = environment.restApiHost + environment.tourImg;
   userImagesUrl = environment.restApiHost + environment.userImg;
   tour: Tour | null = null;
@@ -27,15 +29,13 @@ export class TourDetailsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.select(state => state.tours)
-      .subscribe(toursState => {
-        this.tour = toursState.tourDetails;
-        this.loading = toursState.loading;
-        this.isPurchaseStarted = toursState.isPurchaseStarted;
+    this.storeSubscription = this.store.select(state => state)
+      .subscribe(state => {
+        this.tour = state.tours.tourDetails;
+        this.loading = state.tours.loading;
+        this.isPurchaseStarted = state.tours.isPurchaseStarted;
+        this.isAuthenticated = state.auth.isAuthenticated
       });
-
-    this.store.select(state => state.auth)
-      .subscribe(authState => this.isAuthenticated = authState.isAuthenticated)
 
     const tourSlug = this.route.snapshot.params.slug;
     this.store.dispatch(
@@ -49,5 +49,11 @@ export class TourDetailsPageComponent implements OnInit {
     }
 
     this.store.dispatch(TourActions.startCheckout({ tourId: this.tour?._id || '-1' }));
+  }
+
+  ngOnDestroy() {
+    if (this.storeSubscription) {
+      this.storeSubscription.unsubscribe();
+    }
   }
 }
