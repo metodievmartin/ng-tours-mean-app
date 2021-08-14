@@ -4,6 +4,9 @@ import { AuthResponse, User } from '../interfaces';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../reducers';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +17,10 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
-  ) { }
+    private router: Router,
+    public store: Store<fromApp.AppState>
+  ) {
+  }
 
   register(
     name: string,
@@ -33,6 +38,15 @@ export class AuthService {
       email, password
     });
   }
+
+  isAuthenticated(): boolean {
+    if (!this.getStoredUserData()) return false;
+    if (!this.getStoredAuthToken()) return false;
+    if (!this.getStoredTokenExpirationDate()) return false;
+    if (Number(this.getStoredTokenExpirationDate()) < Date.now()) return false
+    return true;
+  }
+
 
   private setStoredData(token: string, tokenExpirationDate: string, user: User): void {
     localStorage.setItem('auth-jwt', token);
