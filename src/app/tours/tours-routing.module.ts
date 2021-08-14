@@ -13,7 +13,12 @@ const toursRoutes: Routes = [
   { path: '', component: AllToursPageComponent },
   { path: 'top-5', component: TopFiveToursPageComponent },
   { path: 'my-tours', component: MyToursPageComponent },
-  { path: 'stripe-checkout-page', component: CheckoutPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'stripe-checkout-page',
+    component: CheckoutPageComponent,
+    canActivate: [AuthGuard],
+    data: { isAuthenticationRequired: true }
+  },
   { path: ':slug', component: TourDetailsPageComponent },
 ];
 

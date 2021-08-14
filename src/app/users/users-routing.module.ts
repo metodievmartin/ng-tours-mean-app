@@ -9,11 +9,16 @@ import { BookingDetailsPageComponent } from './components/user-profile/booking-d
 
 
 const usersRoutes: Routes = [
-  { path: '', component: UserProfileComponent, canActivate: [AuthGuard], children: [
+  { path: '',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+    data: { isAuthenticationRequired: true },
+    children: [
       { path: '', component: UserSettingsComponent },
       { path: 'bookings', component: UserBookingsComponent },
       { path: 'bookings/:id', component: BookingDetailsPageComponent },
-    ] }
+    ]
+  }
 ];
 
 @NgModule({
