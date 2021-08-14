@@ -10,6 +10,9 @@ export const updateCurrentUserPassword = createAction(
   props<{ currentPassword: string; newPassword: string; passwordConfirm: string; }>()
 );
 
-export const clearNotification = createAction(
+export const notificationDisplayed = createAction(
+  '[User Dashboard] Notification Displayed'
+
+);export const clearNotification = createAction(
   '[User Dashboard] Clear Notification'
 );

@@ -26,6 +26,10 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
       });
   }
 
+  onAlertInit() {
+    this.store.dispatch(UserActions.notificationDisplayed());
+  }
+
   closeAlert() {
     this.store.dispatch(UserActions.clearNotification());
   }

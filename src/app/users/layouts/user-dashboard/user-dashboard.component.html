@@ -5,7 +5,8 @@
       *ngIf="notification || error"
       [alertType]="error? 'error' : 'success'"
       [message]="notification || error"
-      (onClose)="closeAlert()">
+      (onClose)="closeAlert()"
+      (onInit)="onAlertInit()">
     </app-alert>
 
     <app-side-nav class="user-view__menu"></app-side-nav>

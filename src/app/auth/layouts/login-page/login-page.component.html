@@ -1,5 +1,13 @@
 <main>
-  <app-alert *ngIf="error" [message]="error" alertType="error" (onClose)="onAlertClose()"></app-alert>
+
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    alertType="error"
+    (onClose)="onAlertClose()"
+    (onInit)="onAlertInit()">
+  </app-alert>
+
   <div class="login-form">
     <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
     <div *ngIf="loading">

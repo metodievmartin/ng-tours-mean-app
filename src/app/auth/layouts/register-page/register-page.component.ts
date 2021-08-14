@@ -40,12 +40,21 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (!this.registerForm.valid) return;
 
-    if (this.registerForm.controls.password !== this.registerForm.controls.passwordConfirm) return;
+    if (this.registerForm.controls.password.value !== this.registerForm.controls.passwordConfirm.value) return;
 
     const { name, email, password, passwordConfirm } = this.registerForm.value;
 
     this.store.dispatch(
       RegisterPageActions.register({ name, email, password, passwordConfirm })
+    );
+
+    this.registerForm.controls.password.reset();
+    this.registerForm.controls.passwordConfirm.reset();
+  }
+
+  onAlertInit() {
+    this.store.dispatch(
+      AuthActions.notificationDisplayed()
     );
   }
 

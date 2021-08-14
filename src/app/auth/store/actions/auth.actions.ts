@@ -22,3 +22,5 @@ export const logout = createAction('[Auth] Logout');
 
 export const clearError = createAction('[Auth] Clear error');
 
+export const notificationDisplayed = createAction('[Auth] Notification Displayed');
+

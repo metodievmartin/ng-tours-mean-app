@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserActions, UserApiActions, UserBookingActions, UserReviewActions } from '../actions';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { UsersService } from '../../services';
@@ -90,6 +90,14 @@ export class UserEffects {
           })
         )
       })
+    )
+  );
+
+  onAlertDisplayed$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.notificationDisplayed),
+      delay(4000),
+      map(() => UserActions.clearNotification())
     )
   );
 

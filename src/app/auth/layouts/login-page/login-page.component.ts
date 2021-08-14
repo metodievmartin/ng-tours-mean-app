@@ -39,14 +39,23 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     if (!this.loginForm.valid) return;
 
     const { email, password } = this.loginForm.value;
+
     this.store.dispatch(
       LoginPageActions.login({ email, password })
     );
+
+    this.loginForm.controls.password.reset();
   }
 
   onAlertClose() {
     this.store.dispatch(
       AuthActions.clearError()
+    );
+  }
+
+  onAlertInit() {
+    this.store.dispatch(
+      AuthActions.notificationDisplayed()
     );
   }
 

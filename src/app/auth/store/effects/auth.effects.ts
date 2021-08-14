@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../services';
 import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
-import { ActivatedRoute } from '@angular/router';
-import { UserApiActions } from '../../../users/store/actions';
-import { AuthResponse } from '../../interfaces';
+import {  UserApiActions } from '../../../users/store/actions';
 
 
 @Injectable()
@@ -22,7 +21,10 @@ export class AuthEffects {
               this.authService.storeDataAndRedirect(res.token, res.tokenExpirationDate, res.data.user)
             }),
           map(authResponse => AuthApiActions.authSuccess({ authResponse, redirect: true })),
-          catchError(error => this.handleAuthError(error))
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(AuthApiActions.registerFailure({ error }));
+          })
         )
       })
     )
@@ -34,7 +36,10 @@ export class AuthEffects {
       switchMap(action => {
         return this.authService.login(action.email, action.password).pipe(
           map(authResponse => AuthApiActions.authSuccess({ authResponse, redirect: true })),
-          catchError(error => this.handleAuthError(error))
+          catchError(err => {
+            const error = this.mapErrorMessage(err);
+            return of(AuthApiActions.loginFailure({ error }));
+          })
         )
       })
     )
@@ -78,7 +83,10 @@ export class AuthEffects {
 
         return AuthActions.autoLoginSuccess({ user });
       }),
-      catchError(error => this.handleAuthError(error))
+      catchError(err => {
+        const error = this.mapErrorMessage(err);
+        return of(AuthApiActions.loginFailure({ error }));
+      })
     )
   );
 
@@ -111,14 +119,22 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  private handleAuthError(error: any) {
-    const errorMsg = { error: 'Something went wrong. Please try again later' };
+  onAlertDisplayed$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.notificationDisplayed),
+      delay(4000),
+      map(() => AuthActions.clearError())
+    )
+  );
+
+  private mapErrorMessage(error: any): string {
+    let errorMsg = 'Something went wrong. Please try again later';
 
     if (error.statusText !== 'Unknown Error') {
-      errorMsg.error = error.error.message;
+      errorMsg = error.error.message;
     }
 
-    return of(AuthApiActions.registerFailure(errorMsg));
+    return errorMsg;
   }
 
   constructor(
