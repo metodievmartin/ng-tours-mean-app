@@ -7,6 +7,7 @@ import { User } from '../../../auth/interfaces';
   styleUrls: ['./tour-details-description.component.css']
 })
 export class TourDetailsDescriptionComponent implements OnInit {
+  @Input() userImages: string | undefined;
   @Input() startDate: string | undefined;
   @Input() difficulty: string | undefined;
   @Input() maxGroupSize: number | undefined;

@@ -35,7 +35,7 @@
       <div class="overview-box__group">
         <h2 class="heading-secondary ma-bt-lg">Your tour guides</h2>
         <div class="overview-box__detail" *ngFor="let guide of guides">
-          <img class="overview-box__img" src="assets/img/default.jpg" [alt]="guide.role"/>
+          <img class="overview-box__img" [src]="[userImages + guide.photo]" [alt]="guide.role"/>
           <span class="overview-box__label">{{ guide.role }}</span>
           <span class="overview-box__text">{{ guide.name }}</span>
         </div>
