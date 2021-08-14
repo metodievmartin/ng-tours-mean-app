@@ -51,7 +51,7 @@
             <p class="sub-heading"><strong>Available dates: </strong></p>
             <div *ngFor="let date of booking.tour.startDates" class="dates-container">
               <svg class="overview-box__icon">
-                <use xlink:href="/assets/img/icons.svg#icon-calendar"></use>
+                <use xlink:href="assets/img/icons.svg#icon-calendar"></use>
               </svg>
               <p class="date">
                 {{ date | date:'fullDate' }}

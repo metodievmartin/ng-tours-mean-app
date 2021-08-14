@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./side-nav-item.component.css']
 })
 export class SideNavItemComponent implements OnInit {
-  public svgPath = '/assets/img/icons.svg#';
+  public svgPath = 'assets/img/icons.svg#';
   @Input() url = '';
   @Input() svgSuffix = '';
   @Input() textContent = '';
