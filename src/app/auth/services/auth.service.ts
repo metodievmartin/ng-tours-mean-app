@@ -84,9 +84,9 @@ export class AuthService {
   }
 
   clearStoredDataAndRedirect(path?: string): void {
-    this.clearStoredData();
     if (path) {
       this.router.navigate([path]);
     }
+    this.clearStoredData();
   }
 }
