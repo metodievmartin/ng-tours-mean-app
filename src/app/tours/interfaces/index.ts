@@ -59,7 +59,10 @@ export interface Review {
     _id: string;
     name: string;
   };
-  tour: string;
+  tour: {
+    name: string;
+    slug: string;
+  };
   __v: number;
   id: string;
 }
