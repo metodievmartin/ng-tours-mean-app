@@ -26,34 +26,36 @@
     </app-side-nav-item>
 
   </ul>
-  <div class="admin-nav">
+
+  <div *ngIf="user && user.role === 'admin'" class="admin-nav">
     <h5 class="admin-nav__heading">Admin</h5>
     <ul class="side-nav">
 
       <app-side-nav-item
-        url="#"
+        url="/manage-tours"
         svgSuffix="icon-map"
         textContent="Manage tours">
       </app-side-nav-item>
 
       <app-side-nav-item
-        url="#"
+        url="/manage-users"
         svgSuffix="icon-users"
         textContent="Manage users">
       </app-side-nav-item>
 
       <app-side-nav-item
-        url="#"
+        url="/manage-reviews"
         svgSuffix="icon-star"
         textContent="Manage reviews">
       </app-side-nav-item>
 
       <app-side-nav-item
-        url="#"
+        url="/manage-bookings"
         svgSuffix="icon-briefcase"
         textContent="Manage bookings">
       </app-side-nav-item>
 
     </ul>
   </div>
+
 </nav>
