@@ -217,3 +217,7 @@
   flex: 1;
   padding: 7rem 0;
 }
+
+p.no-bookings {
+  font-size: 2rem;
+}
