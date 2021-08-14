@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { CheckoutService, TourService } from '../../services';
 import { StripeApiActions, TourActions, TourApiActions } from '../actions';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class TourEffects {
@@ -88,7 +88,7 @@ export class TourEffects {
   purchaseSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(StripeApiActions.purchaseSuccess),
-      delay(2000),
+      delay(3000),
       tap(action => this.router.navigate(['/my-profile', 'bookings', action.bookingId]))
     ),
     { dispatch: false }

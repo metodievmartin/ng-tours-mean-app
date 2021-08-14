@@ -102,7 +102,6 @@ export const reducer = createReducer(
     ...state,
     error: null,
     loading: false,
-    isPurchaseStarted: false
   })),
 
   on(StripeApiActions.checkoutCreationFailure, (state, { error }) => ({
