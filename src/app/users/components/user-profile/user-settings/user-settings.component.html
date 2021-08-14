@@ -33,6 +33,11 @@
           <input type="file" class="file-input" (change)="onImageChange($event)" name="photo">
           Choose new photo
         </label>
+        <span
+          class="upload-notification"
+          [ngClass]="{'error': fileUploadError !== null}"
+          *ngIf="uploadedStarted"
+        >{{fileUploadError ? fileUploadError : imageName + ' &#9989;'}}</span>
       </div>
       <div class="form__group right">
         <button

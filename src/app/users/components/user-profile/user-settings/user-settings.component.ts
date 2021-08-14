@@ -26,6 +26,10 @@ export class UserSettingsComponent implements OnInit {
     newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
     passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
+  uploadedStarted = false;
+  uploaded= false;
+  imageName = '';
+  fileUploadError: string | null = null;
 
   constructor(
     public store: Store<fromApp.AppState>
@@ -47,7 +51,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onUserInfoUpdate() {
-    if (!this.infoUpdateForm.valid) {
+    if (!this.infoUpdateForm.valid || this.fileUploadError) {
       return;
     }
 
@@ -59,9 +63,14 @@ export class UserSettingsComponent implements OnInit {
       UserActions.updateCurrentUserInfo({ name, email, photo })
     );
 
+    this.uploadedStarted = false;
+    this.uploaded = false;
+    this.imageName = '';
+    this.fileUploadError = null;
   }
 
   onImageChange(e: any) {
+    this.uploadedStarted = true;
     const reader = new FileReader();
 
     if(e.target.files && e.target.files.length) {
@@ -72,7 +81,15 @@ export class UserSettingsComponent implements OnInit {
         this.infoUpdateForm.patchValue({
           photo: file
         });
-        console.log(this.infoUpdateForm.get('photo')?.value);
+
+        this.uploaded= true;
+
+        if (file.type === 'image/png' || file.type === 'image/jpeg') {
+          this.fileUploadError = null;
+          this.imageName = file.name;
+        } else {
+          this.fileUploadError = 'Only files of type image are allowed - .jpg .png'
+        }
       };
 
     }

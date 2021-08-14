@@ -248,3 +248,12 @@ label.upload-container:hover {
   padding: .5rem;
   color: #ff5c09;
 }
+
+span.upload-notification {
+  font-size: 1.1rem;
+  margin-left: 2rem;
+}
+
+span.error {
+  color: #ff5c09;
+}
