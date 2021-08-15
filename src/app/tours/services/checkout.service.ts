@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
 import { CheckoutSession, CheckoutSessionResponse } from '../interfaces';
 
 declare const Stripe: any;
@@ -30,7 +31,7 @@ export class CheckoutService {
 
     if (port) callBackUrl += ':' + port;
 
-    callBackUrl += '/ng-tours-mean-app/tours/stripe-checkout-page';
+    callBackUrl += environment.callbackUrl;
 
     return callBackUrl;
   }

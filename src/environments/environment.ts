@@ -21,7 +21,8 @@ export const environment = {
   tourImg: '/img/tours/',
   userImg: '/img/users/',
   mapboxToken: 'pk.eyJ1IjoibWFydGluLW1ldG9kaWV3IiwiYSI6ImNrc2EzaGYwdDFiaHkyd3MwbmJtYTZydGMifQ.KiCK2e2jNjP2ReKd2wg8Pw',
-  mapboxMapStyles: 'mapbox://styles/martin-metodiew/ckqjaz4s00j6b18pae5dbbk8t'
+  mapboxMapStyles: 'mapbox://styles/martin-metodiew/ckqjaz4s00j6b18pae5dbbk8t',
+  callbackUrl: '/tours/stripe-checkout-page'
 };
 
 /*
