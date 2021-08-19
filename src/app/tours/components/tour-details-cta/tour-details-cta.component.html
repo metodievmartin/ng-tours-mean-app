@@ -8,19 +8,26 @@
     <div class="cta__content">
       <h2 class="heading-secondary">What are you waiting for?</h2>
       <p class="cta__text">{{duration}} days. 1 adventure. Infinite memories. Make it yours today!</p>
-      <button
-        *ngIf="isAuthenticated"
-        (click)="onBookTourClicked($event)"
-        class="btn btn--green span-all-rows"
-        [ngClass]="{ 'right-padding': isPurchaseStarted }"
-        [disabled]="isPurchaseStarted">
-        {{ isPurchaseStarted ? 'Processing...' : 'Book your dream tour now!' }}
-        <app-mini-spinner *ngIf="isPurchaseStarted" class="mini-spinner"></app-mini-spinner>
-      </button>
 
-      <a *ngIf="!isAuthenticated" class="btn btn--green span-all-rows" routerLink="/auth/login">
-        Login to book your dream tour
-      </a>
+      <ng-container *ngIf="isAuthenticated">
+        <button
+          (click)="onBookTourClicked($event)"
+          class="btn btn--green span-all-rows"
+          [ngClass]="{ 'right-padding': isPurchaseStarted }"
+          [disabled]="isPurchaseStarted">
+          {{ isPurchaseStarted ? 'Processing...' : 'Book your dream tour now!' }}
+          <app-mini-spinner *ngIf="isPurchaseStarted" class="mini-spinner"></app-mini-spinner>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="!isAuthenticated">
+        <app-themed-link-btn
+          class="span-all-rows"
+          path="/auth/login"
+          text="Login to book your dream tour"
+        ></app-themed-link-btn>
+      </ng-container>
+
     </div>
   </div>
 </section>

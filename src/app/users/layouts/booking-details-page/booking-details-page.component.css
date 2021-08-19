@@ -1,7 +1,6 @@
 :host {
   flex: 1;
 }
-
 .spinner {
   position: absolute;
   width: 100%;
@@ -25,7 +24,6 @@
   margin: 0 auto;
   padding: 0;
 }
-
 .header {
   display: flex;
   flex-flow: row wrap;
@@ -33,17 +31,13 @@
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-
 a.heading-secondary {
   padding: 0 1rem;
 }
-
 a.heading-secondary:hover {
   border-bottom: 1px solid #28b487;
   transform: translateY(-2px);
 }
-
-
 .heading-secondary {
   font-size: 2.25rem;
   text-transform: uppercase;
@@ -65,81 +59,6 @@ a.heading-secondary:hover {
 .ma-bt-md {
   margin-bottom: 3rem !important;
 }
-
-.btn--green {
-  background-color: #55c57a;
-  color: #fff;
-}
-.btn--green::after {
-  background-color: #55c57a;
-}
-.btn-text:link,
-.btn-text:visited {
-  color: #55c57a;
-  display: inline-block;
-  text-decoration: none;
-  border-bottom: 1px solid #55c57a;
-  padding: 3px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.btn-text:hover {
-  background-color: #55c57a;
-  color: #fff;
-  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-  -webkit-transform: translateY(-2px);
-  transform: translateY(-2px);
-}
-
-.btn-text:active {
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.btn-text:focus {
-  outline: none;
-  outline: 3px solid #55c57a;
-  outline-offset: 3px;
-}
-.btn,
-.btn:link,
-.btn:visited {
-  font-size: 1.6rem;
-  padding: 1.4rem 3rem;
-  border-radius: 10rem;
-  text-transform: uppercase;
-  display: inline-block;
-  text-decoration: none;
-  position: relative;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  font-weight: 400;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  /*Add later when we use this for the button in form*/
-  border: none;
-  cursor: pointer;
-}
-.btn:hover {
-  -webkit-transform: translateY(-3px);
-  transform: translateY(-3px);
-  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-}
-.btn:active {
-  -webkit-transform: translateY(-1px);
-  transform: translateY(-1px);
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-.btn:focus {
-  outline: none;
-  background-color: #2e864b;
-}
 .line {
   margin: 6rem 0;
   width: 100%;
@@ -149,7 +68,6 @@ a.heading-secondary:hover {
 .ma-bt-lg {
   margin-bottom: 3.5rem !important;
 }
-
 .page-container {
   position: relative;
   -webkit-box-flex: 1;
@@ -157,7 +75,6 @@ a.heading-secondary:hover {
   flex: 1;
   padding: 7rem 0;
 }
-
 .overview-box {
   background-color: #f7f7f7;
   display: -webkit-box;

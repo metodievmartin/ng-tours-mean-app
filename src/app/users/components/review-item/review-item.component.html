@@ -25,6 +25,9 @@
   </article>
 
   <article class="btn-container">
-    <a class="btn btn--small btn--green" [routerLink]="['/tours', review.tour.slug]">View Tour</a>
+    <app-themed-link-btn
+      [path]="'/tours/' + review.tour.slug"
+      text="View Tour"
+    ></app-themed-link-btn>
   </article>
 </section>

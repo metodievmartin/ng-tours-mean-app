@@ -65,7 +65,10 @@
         </section>
 
         <article class="btn-container">
-          <a class="btn btn--small btn--green" [routerLink]="['/tours', booking.tour.slug]">Tour Details</a>
+          <app-themed-link-btn
+            [path]="'/tours/' + booking.tour.slug"
+            text="Tour Details">
+          </app-themed-link-btn>
         </article>
 
       </section>
