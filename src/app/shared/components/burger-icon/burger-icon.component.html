@@ -1,0 +1,10 @@
+<input type="checkbox" class="nav-toggle" id="nav-toggle" #checkbox>
+<label
+  class="navicon" for="nav-toggle"
+  (click)="this.toggled.emit(checkbox.checked)">
+    <span
+      *ngFor="let i of [1,2,3]"
+      class="navicon-bar"
+      [style.background-color]="color">
+    </span>
+</label>

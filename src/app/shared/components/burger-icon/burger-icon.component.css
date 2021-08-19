@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.navicon {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  position: absolute;
+  cursor: pointer;
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none;    /* Firefox all */
+  -ms-user-select: none;     /* IE 10+ */
+  user-select: none;         /* Likely future */
+  box-sizing: border-box;
+}
+
+.navicon-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  position: absolute;
+  transition: all .2s ease-out;
+}
+
+.navicon-bar:first-child {
+  top: 5px;
+}
+
+.navicon-bar:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navicon-bar:last-child {
+  bottom: 5px;
+}
+
+.nav-toggle:checked ~ .navicon > .navicon-bar:first-child {
+  transform: rotate(45deg);
+  top: 14px;
+}
+
+.nav-toggle:checked ~ .navicon > .navicon-bar:nth-child(2) {
+  background-color: transparent !important;
+}
+
+.nav-toggle:checked ~ .navicon > .navicon-bar:last-child {
+  transform: rotate(-45deg);
+  bottom: 13px;
+}
+
+.nav-toggle {
+  display: none;
+}

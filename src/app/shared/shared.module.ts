@@ -6,6 +6,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { MiniSpinnerComponent } from './components/mini-spinner/mini-spinner.component';
 import { ThemedLinkBtnComponent } from './components/themed-link-btn/themed-link-btn.component';
 import { RouterModule } from '@angular/router';
+import { BurgerIconComponent } from './components/burger-icon/burger-icon.component';
 
 
 @NgModule({
@@ -14,18 +15,21 @@ import { RouterModule } from '@angular/router';
     SplitFirstPipe,
     AlertComponent,
     MiniSpinnerComponent,
-    ThemedLinkBtnComponent
+    ThemedLinkBtnComponent,
+    BurgerIconComponent
   ],
   imports: [
     CommonModule,
     RouterModule
   ],
-    exports: [
-        SpinnerComponent,
-        SplitFirstPipe,
-        AlertComponent,
-        MiniSpinnerComponent,
-      ThemedLinkBtnComponent
-    ]
+  exports: [
+    SpinnerComponent,
+    SplitFirstPipe,
+    AlertComponent,
+    MiniSpinnerComponent,
+    ThemedLinkBtnComponent,
+    BurgerIconComponent
+  ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
