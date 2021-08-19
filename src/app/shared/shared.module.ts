@@ -4,6 +4,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SplitFirstPipe } from './pipes/split-first.pipe';
 import { AlertComponent } from './components/alert/alert.component';
 import { MiniSpinnerComponent } from './components/mini-spinner/mini-spinner.component';
+import { ThemedLinkBtnComponent } from './components/themed-link-btn/themed-link-btn.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,16 +13,19 @@ import { MiniSpinnerComponent } from './components/mini-spinner/mini-spinner.com
     SpinnerComponent,
     SplitFirstPipe,
     AlertComponent,
-    MiniSpinnerComponent
+    MiniSpinnerComponent,
+    ThemedLinkBtnComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
     exports: [
         SpinnerComponent,
         SplitFirstPipe,
         AlertComponent,
-        MiniSpinnerComponent
+        MiniSpinnerComponent,
+      ThemedLinkBtnComponent
     ]
 })
 export class SharedModule { }

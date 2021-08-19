@@ -1,13 +1,19 @@
 <div class="card__footer">
-    <p>
-      <span class="card__footer-value">${{ price }} </span>
-      <span class="card__footer-text">per person</span>
-    </p>
-    <p class="card__ratings">
-        <span class="card__footer-value">{{ ratingsAverage }} </span>
-        <span class="card__footer-text">rating ({{ ratingsQuantity }})</span>
-    </p>
-    <a class="btn btn--green btn--small" [routerLink]="['/tours', slug]">
-      Details
-    </a>
+
+  <p>
+    <span class="card__footer-value">${{ price }} </span>
+    <span class="card__footer-text">per person</span>
+  </p>
+
+  <p class="card__ratings">
+    <span class="card__footer-value">{{ ratingsAverage }} </span>
+    <span class="card__footer-text">rating ({{ ratingsQuantity }})</span>
+  </p>
+
+  <app-themed-link-btn
+    class="grid-btn"
+    [path]="'/tours/' + slug"
+    text="Details">
+  </app-themed-link-btn>
+
 </div>

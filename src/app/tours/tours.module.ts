@@ -41,11 +41,11 @@ import { environment } from '../../environments/environment';
     CheckoutPageComponent,
     TopFiveToursPageComponent,
     BannerComponent,
-    MyToursPageComponent
+    MyToursPageComponent,
   ],
   exports: [
     AllToursPageComponent,
-    TourDetailsPageComponent
+    TourDetailsPageComponent,
   ],
   imports: [
     CommonModule,
