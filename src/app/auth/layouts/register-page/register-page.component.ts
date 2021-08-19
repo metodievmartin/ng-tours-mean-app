@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import { AuthActions, RegisterPageActions } from '../../store/actions';
-import * as fromApp from '../../../reducers';
+import { AuthActions, RegisterPageActions } from '../../+store/actions';
+import * as fromApp from '../../../+store/reducers';
 
 
 @Component({

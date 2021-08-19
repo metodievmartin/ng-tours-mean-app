@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Tour } from '../../interfaces';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../../reducers';
-import { TourActions } from '../../store/actions';
+import * as fromApp from '../../../+store/reducers';
+import { TourActions } from '../../+store/actions';
 import { environment } from '../../../../environments/environment';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../../reducers';
+import * as fromApp from '../../../+store/reducers';
 import { User } from '../../../auth/interfaces';
 
 

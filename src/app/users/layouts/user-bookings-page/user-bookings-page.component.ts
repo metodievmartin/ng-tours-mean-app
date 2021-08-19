@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../../reducers';
+import * as fromApp from '../../../+store/reducers';
 import { Booking } from '../../interfaces';
-import { UserBookingActions } from '../../store/actions';
+import { UserBookingActions } from '../../+store/actions';
 import { environment } from '../../../../environments/environment';
 import { Subscription } from 'rxjs';
 

@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import * as fromApp from '../../../reducers';
-import { AuthActions, LoginPageActions } from '../../store/actions';
+import * as fromApp from '../../../+store/reducers';
+import { AuthActions, LoginPageActions } from '../../+store/actions';
 import { Subscription } from 'rxjs';
 
 

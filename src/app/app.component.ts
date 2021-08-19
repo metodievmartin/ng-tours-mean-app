@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from './reducers';
-import { AuthActions } from './auth/store/actions';
+import * as fromApp from './+store/reducers';
+import { AuthActions } from './auth/+store/actions';
 
 @Component({
   selector: 'app-root',

@@ -8,7 +8,7 @@ import { UserSettingsPageComponent } from './layouts/user-settings-page/user-set
 import { UserBookingsPageComponent } from './layouts/user-bookings-page/user-bookings-page.component';
 import { BookingItemComponent } from './components/booking-item/booking-item.component';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './store/effects/user.effects';
+import { UserEffects } from './+store/effects/user.effects';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookingDetailsPageComponent } from './layouts/booking-details-page/booking-details-page.component';

@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '../../../reducers';
-import { UserActions } from '../../store/actions';
+import * as fromApp from '../../../+store/reducers';
+import { UserActions } from '../../+store/actions';
 import { User } from '../../../auth/interfaces';
 import { environment } from '../../../../environments/environment';
 import { Subscription } from 'rxjs';

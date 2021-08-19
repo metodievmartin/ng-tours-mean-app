@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as fromApp from '../../../reducers';
-import { StripeApiActions, TourActions } from '../../store/actions';
-import { PurchaseStatus } from '../../store/reducers';
+import * as fromApp from '../../../+store/reducers';
+import { StripeApiActions, TourActions } from '../../+store/actions';
+import { PurchaseStatus } from '../../+store/reducers';
 
 
 @Component({

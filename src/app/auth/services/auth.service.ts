@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../reducers';
+import * as fromApp from '../../+store/reducers';
 
 
 @Injectable({

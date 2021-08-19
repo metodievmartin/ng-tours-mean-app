@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import { Tour } from '../../interfaces';
-import * as fromApp from '../../../reducers';
-import { TourActions } from '../../store/actions';
+import * as fromApp from '../../../+store/reducers';
+import { TourActions } from '../../+store/actions';
 
 
 @Component({

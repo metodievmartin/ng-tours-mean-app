@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../services';
 import { AuthActions, AuthApiActions, LoginPageActions, RegisterPageActions } from '../actions';
-import {  UserApiActions } from '../../../users/store/actions';
+import {  UserApiActions } from '../../../users/+store/actions';
 
 
 @Injectable()

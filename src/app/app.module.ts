@@ -6,11 +6,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './+store/reducers';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthEffects } from './auth/store/effects';
+import { AuthEffects } from './auth/+store/effects';
 import { AuthInterceptor } from './auth/interceptors';
 
 

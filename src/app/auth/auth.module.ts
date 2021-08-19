@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/effects';
+import { AuthEffects } from './+store/effects';
 
 
 

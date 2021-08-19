@@ -10,7 +10,7 @@ import { ToursRoutingModule } from './tours-routing.module';
 import { TourCardHeaderComponent } from './components/tour-card/tour-card-header/tour-card-header.component';
 import { TourCardDetailsComponent } from './components/tour-card/tour-card-details/tour-card-details.component';
 import { TourCardFooterComponent } from './components/tour-card/tour-card-footer/tour-card-footer.component';
-import { TourEffects } from './store/effects';
+import { TourEffects } from './+store/effects';
 import { SharedModule } from '../shared/shared.module';
 import { TourDetailsHeaderComponent } from './components/tour-details-header/tour-details-header.component';
 import { TourDetailsDescriptionComponent } from './components/tour-details-description/tour-details-description.component';

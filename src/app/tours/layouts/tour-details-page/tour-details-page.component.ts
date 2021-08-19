@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import * as fromApp from '../../../reducers';
-import { TourActions } from '../../store/actions';
+import * as fromApp from '../../../+store/reducers';
+import { TourActions } from '../../+store/actions';
 import { Tour } from '../../interfaces';
 import { environment } from '../../../../environments/environment';
 

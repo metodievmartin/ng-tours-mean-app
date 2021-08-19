@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as fromApp from '../../../reducers';
-import { UserReviewActions } from '../../store/actions';
+import * as fromApp from '../../../+store/reducers';
+import { UserReviewActions } from '../../+store/actions';
 import { Review } from '../../../tours/interfaces';
 
 

@@ -5,7 +5,7 @@ import { catchError, delay, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { UsersService } from '../../services';
-import { AuthApiActions } from '../../../auth/store/actions';
+import { AuthApiActions } from '../../../auth/+store/actions';
 
 
 @Injectable()

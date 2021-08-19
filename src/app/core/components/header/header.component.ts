@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as fromApp from '../../../reducers'
-import { AuthActions } from '../../../auth/store/actions';
+import * as fromApp from '../../../+store/reducers'
+import { AuthActions } from '../../../auth/+store/actions';
 import { environment } from '../../../../environments/environment';
 import { User } from '../../../auth/interfaces';
 
