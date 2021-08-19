@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
@@ -18,10 +18,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   urlBase = environment.restApiHost + environment.userImg;
   user: User | null = null;
   isAuthenticated: boolean = false;
+  screenWidth: number;
+  showBurgerMenu = false;
 
   constructor(
     public store: Store<fromApp.AppState>
-  ) { }
+  ) {
+    this.screenWidth = window.innerWidth;
+  }
 
   ngOnInit(): void {
     this.storeSubscription = this.store.select(state => state.auth)
@@ -31,8 +35,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.screenWidth = window.innerWidth;
+  }
+
   onLogout() {
     this.store.dispatch(AuthActions.logout());
+  }
+
+  toggleBurgerMenu() {
+    this.showBurgerMenu = !this.showBurgerMenu;
   }
 
   ngOnDestroy() {

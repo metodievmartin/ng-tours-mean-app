@@ -1,26 +1,153 @@
 <header class="header">
+
+  <ng-container
+    *ngIf="screenWidth >= 1100"
+    [ngTemplateOutlet]="desktopMenu">
+  </ng-container>
+
+  <ng-container
+    *ngIf="screenWidth < 1100"
+    [ngTemplateOutlet]="mobileMenu">
+  </ng-container>
+
+</header>
+
+
+<ng-template #desktopMenu>
+<!-- Desktop navigation -->
+
   <nav class="nav nav--tours">
-    <a class="nav__el" routerLink="/tours">All tours</a>
-    <a class="nav__el" routerLink="/tours/top-5">Top 5 tours</a>
+    <a
+      class="nav__el"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/tours">
+      All tours
+    </a>
+    <a
+      class="nav__el"
+      routerLinkActive="active"
+      routerLink="/tours/top-5">
+      Top 5 tours
+    </a>
   </nav>
+
   <div class="header__logo">
     <img src="assets/img/logo-white.png" alt="Natours logo"/>
   </div>
+
   <nav class="nav nav--user">
 
     <ng-container *ngIf="!isAuthenticated">
-      <a class="nav__el" routerLink="/auth/login">Login</a>
-      <a class="nav__el nav__el--cta" routerLink="/auth/register">Sign Up</a>
+      <a
+        class="nav__el"
+        routerLinkActive="active"
+        routerLink="/auth/login">
+        Login
+      </a>
+      <a
+        class="nav__el nav__el--cta"
+        routerLinkActive="active"
+        routerLink="/auth/register">
+        Sign Up
+      </a>
     </ng-container>
 
     <ng-container *ngIf="isAuthenticated && user">
-      <a class="nav__el nav__el--logout" routerLink="/tours/my-tours">My tours</a>
-      <a class="nav__el nav__el--logout" (click)="onLogout()">Logout</a>
-      <a class="nav__el" routerLink="/my-profile">
-        <img class="nav__user-img" [src]="[urlBase + user.photo]" alt="user-profile-pic"/>
+      <a
+        class="nav__el nav__el--logout"
+        routerLinkActive="active"
+        routerLink="/tours/my-tours">
+        My tours
+      </a>
+      <a
+        class="nav__el nav__el--logout"
+        routerLinkActive="active"
+        (click)="onLogout()">
+        Logout
+      </a>
+      <a
+        class="nav__el"
+        routerLinkActive="active"
+        routerLink="/my-profile"
+      >
+        <img class="nav__user-img" [src]="[urlBase + user.photo]"  alt="profile-pic"/>
         {{ user.name | splitFirst:' ' }}
       </a>
     </ng-container>
 
   </nav>
-</header>
+
+</ng-template>
+
+
+<ng-template #mobileMenu>
+  <!-- Mobile navigation -->
+
+  <div class="header__logo">
+    <img src="assets/img/logo-white.png" alt="Natours logo"/>
+  </div>
+
+  <nav class="nav nav--users">
+    <app-burger-icon
+      (toggled)="toggleBurgerMenu()">
+    </app-burger-icon>
+  </nav>
+
+  <nav *ngIf="showBurgerMenu" class="burger-menu">
+
+    <a
+      class="nav__el"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/tours">
+      All tours
+    </a>
+    <a
+      class="nav__el"
+      routerLinkActive="active"
+      routerLink="/tours/top-5">
+      Top 5 tours
+    </a>
+
+    <ng-container *ngIf="!isAuthenticated">
+      <a
+        class="nav__el"
+        routerLinkActive="active"
+        routerLink="/auth/login">
+        Login
+      </a>
+      <a
+        class="nav__el nav__el--cta"
+        routerLinkActive="active"
+        routerLink="/auth/register">
+        Sign Up
+      </a>
+    </ng-container>
+
+    <ng-container *ngIf="isAuthenticated && user">
+      <a
+        class="nav__el nav__el--logout"
+        routerLinkActive="active"
+        routerLink="/tours/my-tours">
+        My tours
+      </a>
+      <a
+        class="nav__el profile"
+        routerLinkActive="active"
+        routerLink="/my-profile"
+      >
+        <img class="nav__user-img" [src]="[urlBase + user.photo]" alt="user-profile-pic"/>
+        {{ user.name | splitFirst:' ' }}
+      </a>
+      <a
+        class="nav__el nav__el--logout"
+        routerLinkActive="active"
+        (click)="onLogout()">
+        Logout
+      </a>
+    </ng-container>
+
+  </nav>
+
+</ng-template>
